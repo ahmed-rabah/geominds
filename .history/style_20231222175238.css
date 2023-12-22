@@ -498,10 +498,22 @@ text-transform: uppercase;
   .heading{
     font-size: var(--fs-heading-0);
   } 
-* section img{
+  .section-desc{
+    height: fit-content;
+  }
+ 
+  /* section img{
+    grid-area: image;
     height: 80%;
-  }  
+  }  */
    section {
+    grid-template-columns: 1fr 1.2fr;
+    grid-template-areas: 'heading image' 'desc image'  ;
+    gap: 0;
+    align-items: center;
+    align-content : center ; 
+    place-items: center;
+    align-content: center;
     padding: 0 var(--size-1000);
   } 
   /* .reversed-section{

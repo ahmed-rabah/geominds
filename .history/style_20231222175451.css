@@ -502,6 +502,7 @@ text-transform: uppercase;
     height: 80%;
   }  
    section {
+    grid-template-columns: 1fr 1.2fr;
     padding: 0 var(--size-1000);
   } 
   /* .reversed-section{

@@ -438,7 +438,6 @@ text-transform: uppercase;
 }
 
 @media screen and (min-width: 1100px) {
-  
   :root{
      --fs-body : var(--fs-18) ; 
   }
@@ -493,26 +492,3 @@ text-transform: uppercase;
 
 }
 
-@media screen and (min-width: 1360px) {
-
-  .heading{
-    font-size: var(--fs-heading-0);
-  } 
-* section img{
-    height: 80%;
-  }  
-   section {
-    padding: 0 var(--size-1000);
-  } 
-  /* .reversed-section{
-    grid-template-areas: 'image heading' 'image desc'  ;
-
-  }
-  .section-desc p{
-    text-align: left;
-  }
-  .button  {
-    align-self:self-start;
-  } */
-
-}
