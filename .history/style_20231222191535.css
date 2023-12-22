@@ -526,7 +526,7 @@ text-transform: uppercase;
 
 }
 
-@media(prefers-reduced-motion: reduce) {
+@media(prefers-reduce-motion) {
   .animation{
     transition: none;
   }  

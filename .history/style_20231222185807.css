@@ -513,7 +513,7 @@ text-transform: uppercase;
 }
 
 @media screen and (min-width: 1360px) {
- 
+
   .heading{
     font-size: var(--fs-heading);
   } 
@@ -523,11 +523,15 @@ text-transform: uppercase;
    section {
     padding: 0 var(--size-1000);
   } 
+  /* .reversed-section{
+    grid-template-areas: 'image heading' 'image desc'  ;
 
-}
+  }
+  .section-desc p{
+    text-align: left;
+  }
+  .button  {
+    align-self:self-start;
+  } */
 
-@media(prefers-reduced-motion: reduce) {
-  .animation{
-    transition: none;
-  }  
 }

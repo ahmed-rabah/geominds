@@ -525,9 +525,3 @@ text-transform: uppercase;
   } 
 
 }
-
-@media(prefers-reduced-motion: reduce) {
-  .animation{
-    transition: none;
-  }  
-}

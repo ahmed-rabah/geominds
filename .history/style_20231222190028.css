@@ -513,7 +513,9 @@ text-transform: uppercase;
 }
 
 @media screen and (min-width: 1360px) {
- 
+  .top{
+    top: 0px;
+  }
   .heading{
     font-size: var(--fs-heading);
   } 
@@ -524,10 +526,4 @@ text-transform: uppercase;
     padding: 0 var(--size-1000);
   } 
 
-}
-
-@media(prefers-reduced-motion: reduce) {
-  .animation{
-    transition: none;
-  }  
 }

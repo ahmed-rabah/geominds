@@ -1,5 +1,9 @@
 
 import './style.css'
+import javascriptLogo from './images/logo.svg'
+import viteLogo from '/images/logo.svg'
+import { setupCounter } from './counter.js'
+
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
