@@ -104,6 +104,7 @@ section{
   justify-items: center;
   gap: var(--size-600);
   padding: var(--size-400) var(--size-300);
+  z-index: 100;
 }
 
 .heading{

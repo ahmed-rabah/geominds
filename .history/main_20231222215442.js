@@ -1,6 +1,5 @@
 
-import './general.css'
-import './style.css'
+// import './style.css'
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
