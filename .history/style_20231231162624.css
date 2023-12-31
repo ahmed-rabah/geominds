@@ -167,10 +167,10 @@ header{
 transform: scale(1.1);
 }
 /* temp  */
-/* .icon-hamburger, */
+/* .icon-hamburger,
 .icon-close{
   display: none ; 
-} 
+} */
 .wave{
   position: relative;
   width: 100%;
@@ -184,11 +184,7 @@ transform: scale(1.1);
 }
 
 .hide{
-  display: none !important;
-}
-.show{
-  display: block !important;
-  
+  display: none;
 }
 
 
@@ -344,9 +340,7 @@ text-transform: uppercase;
   align-items: center;
   gap: var(--size-300);
 }
-#footer-contact{
-  display : none ; 
-}
+
 #copyright{
   background : black;
   color: white;
@@ -415,9 +409,7 @@ text-transform: uppercase;
      /* font-size: 20px; */
   }
 
-  .icon-hamburger{
-    display : none ; 
-  }  
+  
   .nav-menu{
     position: static;
     background-color: transparent;
@@ -518,7 +510,7 @@ text-transform: uppercase;
   .bottom{
     transform: translateY(-20%)
   } */
-  .show-animation{
+  .show{
     opacity: 1;
     filter: blur(0);
     transform: translateY(0%);

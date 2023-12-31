@@ -37,8 +37,6 @@ import './style.css'
 //   </div>
 // </nav>
 // </header>`);
-// let body = document.getElementsByTagName('body') ; 
-// console.log(body) ;
 
 let toggleMenu = document.querySelector('.menu-toggle') ; 
 let hamburgerBtn = toggleMenu.querySelector('.icon-hamburger') ;

@@ -184,11 +184,10 @@ transform: scale(1.1);
 }
 
 .hide{
-  display: none !important;
+  display: none ;
 }
 .show{
-  display: block !important;
-  
+  display: block ;
 }
 
 
@@ -199,7 +198,9 @@ right: 0;
 width: 100vw;
 height: calc(100vh - 70px);
 background-color: var(--clr-light-green);
-display: none;
+    display: none;
+      transition: display 0.5s ease;
+/* display: none; */
 
 }
 .nav-list{
@@ -344,9 +345,7 @@ text-transform: uppercase;
   align-items: center;
   gap: var(--size-300);
 }
-#footer-contact{
-  display : none ; 
-}
+
 #copyright{
   background : black;
   color: white;

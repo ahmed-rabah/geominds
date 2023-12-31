@@ -433,6 +433,8 @@ text-transform: uppercase;
   .nav-item{
   padding: 0;
   border: none;
+  border-bottom : 2px solid var(--clr-dark-blue) ; 
+
   width: fit-content;
   }
   .nav-link{

@@ -376,36 +376,7 @@ text-transform: uppercase;
   .footer-logo-support{
     grid-row: inherit;
   }
-  #footer-contact{
-    display: grid;
-    gap: var(--size-100);
-    justify-items: flex-start;
-  }
-  #footer-contact h4{
-    color: var(--white, #FFF);
-    text-align: center;
-    font-family: var(--ff-secondary);
-    font-size: var(--fs-18);
-    font-weight: var(--fw-semi-bold);
-    line-height: 110%; /* 22px */
-    text-transform: capitalize;
-  }
-  #footer-contact input , 
-  #footer-contact textarea{
-    color:var(--clr-primary-1);
-    font-family: var(--ff-body);
-    font-size: var(--fs-16);
-    font-weight: var(--fw-regular);
-    line-height: 170%; /* 23.8px */
-    text-transform: capitalize;
-    border-radius: var(--size-100);
-    padding: 0 var(--size-200);
-    width: 100%;
-    border: 1px solid var(--clr-primary-2);
-  }
-  #footer-contact button{
-    border: 1px solid var(--clr-primary-2);
-  }
+
 }
 
 @media screen and (min-width: 900px) {

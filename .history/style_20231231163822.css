@@ -184,11 +184,10 @@ transform: scale(1.1);
 }
 
 .hide{
-  display: none !important;
+  display: none;
 }
 .show{
-  display: block !important;
-  
+  display: block;
 }
 
 
@@ -344,9 +343,7 @@ text-transform: uppercase;
   align-items: center;
   gap: var(--size-300);
 }
-#footer-contact{
-  display : none ; 
-}
+
 #copyright{
   background : black;
   color: white;
@@ -518,7 +515,7 @@ text-transform: uppercase;
   .bottom{
     transform: translateY(-20%)
   } */
-  .show-animation{
+  .show{
     opacity: 1;
     filter: blur(0);
     transform: translateY(0%);

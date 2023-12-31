@@ -218,6 +218,7 @@ display: none;
   text-transform: uppercase ;
   border-bottom: 1px solid var(--clr-primary-1);
   cursor: pointer;
+  border-bottom : 2px solid var(--clr-dark-blue) ; 
 }
 .nav-link{
   display: block;
