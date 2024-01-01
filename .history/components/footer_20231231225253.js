@@ -14,7 +14,7 @@ firstScript.insertAdjacentHTML('beforebegin',`    <footer>
 
   <ul class="footer-nav-list" role="list">
       <li class="footer-nav-item">
-        <a href="./" class="footer-nav-link">home</a>
+        <a href="#" class="footer-nav-link">home</a>
       </li>
       <li class="footer-nav-item">
         <a href="./mapExplorer.html" class="footer-nav-link">map Explorer</a>
