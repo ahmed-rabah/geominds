@@ -1,0 +1,5 @@
+.continents-caroussel{
+    display: flex;
+    justify-content: center;
+    padding: var(--size-500);
+}

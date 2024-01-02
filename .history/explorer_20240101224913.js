@@ -10,7 +10,6 @@ let rightArrow = document.querySelector('.arrow-right');
 // let data = countries()
 // data.then(countries=>{countries.map(country=>console.log(country.name))});  
 
-
 function slideContinents(list,direction){
     // let clientWidth = list.clientWidth ; 
     // let scrollWidth = list.scrollWidth ;

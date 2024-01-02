@@ -35,3 +35,7 @@ function slideContinents(list,direction){
     console.log(list.scrollLeft+" after")
 
 }
+setTimeout(()=>{
+    let aside = document.querySelector('aside')
+    aside.style.position = "absolute";
+},3000)

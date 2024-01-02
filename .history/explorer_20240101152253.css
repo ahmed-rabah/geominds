@@ -1,0 +1,5 @@
+@import url('./main.css');
+.continents-caroussel{
+    display: flex;
+    padding: var(--size-400);
+}
