@@ -1,0 +1,194 @@
+.continents-caroussel{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    gap : var(--size-100);
+    flex-wrap: nowrap;
+    padding: var(--size-200)  ;
+    padding-top: var(--size-500) ;
+}
+.horizontal-arrow{
+    cursor: pointer;
+    border: 1px solid var(--clr-primary-1);
+    border-radius: 50% ; 
+    /* display: none; */
+}
+.arrow-left{
+    display: none ; 
+}
+.continents-list{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow:hidden;
+    gap: var(--size-300); 
+    /* scroll-behavior: smooth; */
+}
+.continent-btn{
+    border-radius: var(--size-200);
+    padding: var(--size-100) var(--size-200);
+    border: 1px solid var(--clr-primary-1, #04364A);
+    background: white ;
+    cursor: pointer;
+    font-family: var(--ff-body);
+    font-size: var(--fs-16);
+    font-weight: var(--fw-regular);
+    color: var(--clr-primary-1);  
+    text-align: center;
+    text-transform: capitalize;
+    min-width: max-content ; 
+    transition: all 0.3s ease-in-out; 
+}
+.continent-btn:hover{
+    background-color: var(--clr-primary-2);
+    color: white;
+}
+.continent-btn:first-child{
+    padding-inline: var(--size-300);
+}
+.continent-btn:first-child:hover{
+    
+    background-color: var(--clr-primary-2);
+    color: white;
+    /* opacity: 0.5; */
+}
+
+.continent-btn.selected{
+    background-color: var(--clr-primary-1) ; 
+    color: white;
+    border: white;
+}
+main{
+    display: flex; 
+    position: relative;
+    min-height: calc(100vh - 70px - 67px);
+    
+}
+aside {
+    position: fixed;
+    top: calc(70px + 67px);
+    background-color: var(--clr-primary-1);
+    border-top-right-radius: var(--size-200) ;
+    height: calc(100vh - 70px - 67px); 
+    overflow: hidden;  /* temp*/
+    /* margin-right: var(--size-400); */
+}
+section{
+    margin-left: 75px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:  var(--size-900);
+    flex-direction: column;
+}
+section h1{
+    text-shadow: 4px 2px 20px var(--clr-primary-1);
+    /* width: 100%; */
+}
+section h1 span{
+    text-transform: lowercase;
+    text-shadow: 4px 2px 20px var(--clr-primary-2);
+
+}
+.control-icons{
+    display: flex ; 
+    justify-content: center;
+    align-items: center;
+}
+.icon-search,
+.icon-close-search{
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+.icon-search:hover,
+.icon-close-search:hover{
+transform: scale(1.1);
+}
+/* temp  */
+/* .icon-hamburger, */
+
+.countries-search,
+.country-search-group{
+    display: grid;
+    grid-template-columns: 40px auto;
+    justify-content: first baseline;
+    column-gap: var(--size-400);
+    padding: var(--size-300) var(--size-400);
+
+}
+.country-search-group{
+    cursor: pointer;
+    border-bottom: 1px solid var(--clr-light-white);
+    transition: column-gap 0.4s  ease; 
+}
+.country-search-group:hover{
+    background-color: var(--clr-primary-2);
+}
+.countries-input{
+    border: 1px solid var(--clr-light-white);
+    background: var(--clr-light-white );
+    border-radius: var(--size-200);
+    padding-inline: var(--size-300);
+    outline: none;
+}
+.country-icon-img{
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.country-search-group .country-name{
+    text-align: center;
+    color: white;
+    text-transform: capitalize;
+}
+.closed-aside div input,
+.closed-aside div h4{
+    display: none;
+}
+.closed-aside div{
+    column-gap: 0;
+    border: none;
+}
+@media screen and (min-width: 768px) {
+    .horizontal-arrow{
+        display: none;
+    }
+  
+
+  }
+  
+  @media screen and (min-width: 900px) {
+    .continent-btn:first-child{
+        padding-inline: var(--size-400);
+    }
+    .continents-list{
+        gap: var(--size-400);
+    }
+  }
+  
+  @media screen and (min-width: 1100px) {
+    .heading{
+        font-size: var(--fs-heading-0);
+      }
+    .continent-btn:first-child{
+        padding-inline: var(--size-600);
+    }
+    .continents-list{
+        gap: var(--size-600);
+    }
+    section h1{
+        text-align: center !important;
+        
+        /* width: 100%; */
+    }
+  }
+  
+  @media screen and (min-width: 1360px) {
+    /* .continents-list{
+        gap: var(--size-900);
+    
+  } */
+ }
