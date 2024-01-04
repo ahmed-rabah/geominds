@@ -126,25 +126,9 @@ function displayCountry(countryName){
             tld,unMember,timezones,
             subregion,status,
             startOfWeek,region,
-            responseFulfiled = true} = countries.filter(country => country.name.common  === countryName)[0] ?? {name: countryName , responseFulfiled : false} ; 
+            responseFulfiled : "false"} = countries.filter(country => country.name.common  === countryName)[0] ?? {name: countryName , responseFulfiled : false} ; 
             
-            section.innerHTML = `<div class="country-names-flag">
-                                <img src="${flags.svg}" class="country-flag>
-                                <div class="country-names">
-                                    <div className="official-name">
-
-                                        <h3 className="english-oficcial-name">${name.official}</h3>
-                                        <h3 className="seconadary-oficcial-name">${name.official}</h3>
-                                    </div>
-                                    <div className="official-name">
-                                        <h3 className="english-oficcial-name">${name.common}</h3>
-                                        <h3 className="seconadary-oficcial-name">${name.common}</h3>
-                                    </div>
-                                </div>
-                                </div>
-                                
-                                `; 
-            
+            section.innerHTML = `<img src="${flags.svg}">` ; 
     });
 }
 

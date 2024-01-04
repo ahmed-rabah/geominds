@@ -132,13 +132,13 @@ function displayCountry(countryName){
                                 <img src="${flags.svg}" class="country-flag>
                                 <div class="country-names">
                                     <div className="official-name">
-
+                                        
                                         <h3 className="english-oficcial-name">${name.official}</h3>
                                         <h3 className="seconadary-oficcial-name">${name.official}</h3>
                                     </div>
                                     <div className="official-name">
-                                        <h3 className="english-oficcial-name">${name.common}</h3>
-                                        <h3 className="seconadary-oficcial-name">${name.common}</h3>
+                                        <h3 className="english-oficcial-name">${name.official}</h3>
+                                        <h3 className="seconadary-oficcial-name">${name.official}</h3>
                                     </div>
                                 </div>
                                 </div>
