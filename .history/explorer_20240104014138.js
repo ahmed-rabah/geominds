@@ -105,7 +105,7 @@ function setCountriesListeners(){
 
     countries.forEach(country => {
         country.addEventListener("click",()=>{
-            
+
             displayCountry(country.dataset.countryName)
             
         })

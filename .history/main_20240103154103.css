@@ -274,9 +274,8 @@ display: none;
   cursor: pointer;
 }
 
-footer{  
-  position: relative;
-  clear: both;
+footer{
+  z-index: 100;
 }
 #footer-nav{
   display: grid;

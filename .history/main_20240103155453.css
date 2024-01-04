@@ -275,7 +275,7 @@ display: none;
 }
 
 footer{  
-  position: relative;
+  /* position: relative; */
   clear: both;
 }
 #footer-nav{

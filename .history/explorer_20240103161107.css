@@ -62,7 +62,7 @@
 main{
     display: flex; 
     position: relative;
-    min-height: calc(100vh - 70px - 67px);
+    min-height: 100vh;
     
 }
 aside {
@@ -70,7 +70,8 @@ aside {
     top: calc(70px + 67px);
     background-color: var(--clr-primary-1);
     border-top-right-radius: var(--size-200) ;
-    height: 100vh; 
+    max-height: 100vh; 
+    min-height: 50vh;
     overflow: hidden;  /* temp*/
     overflow-y: scroll;
     scroll-snap-type:proximity ;
@@ -89,7 +90,7 @@ aside.closed-aside::-webkit-scrollbar {
 aside::-webkit-scrollbar-track {
     background-color: var(--clr-primary-1);
     border-top-right-radius: var(--size-200) ;
-    border-left: 1px solid var(--clr-light-white);
+    
 }
 aside::-webkit-scrollbar-thumb {
     background-color: var(--clr-light-white);
@@ -150,14 +151,9 @@ transform: scale(1.1);
     border-bottom: 1px solid var(--clr-light-white);
     transition: column-gap 0.4s  ease; 
 }
-.country-search-group:hover,
-.country-search-group.selected:hover{
+.country-search-group:hover{
     background-color: var(--clr-primary-2);
 }
-.country-search-group.selected{
-    background-color: var(--clr-light-green);
-}
-
 .countries-input{
     border: 1px solid var(--clr-light-white);
     background: var(--clr-light-white );

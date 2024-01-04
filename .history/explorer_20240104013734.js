@@ -10,7 +10,6 @@ let searchIcon = document.querySelector('.icon-search');
 let closeSearchIcon = document.querySelector('.icon-close-search');  
 let aside = document.querySelector('aside'); 
 let footer = document.querySelector('footer'); 
-let section = document.querySelector('section'); 
 let Allcountries =  getCountries();
 
 //listeners
@@ -105,7 +104,7 @@ function setCountriesListeners(){
 
     countries.forEach(country => {
         country.addEventListener("click",()=>{
-            
+
             displayCountry(country.dataset.countryName)
             
         })
@@ -114,19 +113,7 @@ function setCountriesListeners(){
 
 function displayCountry(countryName){
     Allcountries.then(countries=>{
-        let {name,flags,
-            translations,
-            languages,
-            maps,population,
-            area,borders,
-            capital,coatOfArms,
-            continents,currencies,
-            isoCode,idd:{root},
-            landlocked,independent,
-            tld,unMember,timezones,
-            subregion,status,
-            startOfWeek,region} = countries.filter(country => country.name.common  === countryName)[0] ; 
-            section.innerHTML = `<img src="${flags.svg}">` ; 
+         return countries.filter(country => country.name.common  === countryName)[0] ; 
     });
 }
 

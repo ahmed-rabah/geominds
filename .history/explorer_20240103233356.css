@@ -70,7 +70,7 @@ aside {
     top: calc(70px + 67px);
     background-color: var(--clr-primary-1);
     border-top-right-radius: var(--size-200) ;
-    height: 100vh; 
+    max-height: calc(100vh - 70px - 67px); 
     overflow: hidden;  /* temp*/
     overflow-y: scroll;
     scroll-snap-type:proximity ;

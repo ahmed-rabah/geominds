@@ -1,5 +1,5 @@
 import './explorer.css'
-// import {countriesSearchList , getCountries , setCountriesListeners} from './components/sideCountriesList.js';
+import {countriesSearchList , getCountries , setCountriesListeners} from './components/sideCountriesList.js';
 
 let continentsList = document.querySelector('.continents-list') ; 
 let CtnArrow = document.querySelectorAll('.horizontal-arrow'); 
@@ -10,12 +10,10 @@ let searchIcon = document.querySelector('.icon-search');
 let closeSearchIcon = document.querySelector('.icon-close-search');  
 let aside = document.querySelector('aside'); 
 let footer = document.querySelector('footer'); 
-let section = document.querySelector('section'); 
-let Allcountries =  getCountries();
+let data = getCountries();
 
-//listeners
 window.addEventListener('DOMContentLoaded',()=>{
-    let list = countriesSearchList(Allcountries) ;     
+    let list = countriesSearchList(data) ;     
     list.then(countriesSearchItems => {
         aside.insertAdjacentHTML('beforeend',countriesSearchItems) ; 
         setCountriesListeners() ; 
@@ -69,64 +67,3 @@ function slideContinents(list,direction){
         rightArrow.style.display = "block";
     }
 }
-
-
-
-// functions
-
-async function getCountries(){
-    try {
-        let response = await fetch('https://restcountries.com/v3.1/all')
-        let data= await response.json() ; 
-        return data ; 
-    } catch (error) {
-        console.error(error) ;
-        return ; 
-    }
-}
-
-function countriesSearchList(list){
-   return list.then((countries) => {console.log(countries[100]);
-    let htmlSearchList = `` ; 
-        countries.forEach(({name,flags}) => {
-            htmlSearchList += `
-                <div class="country-search-group"  data-country-name="${name.common}">
-                    <img src="${flags.svg}" alt="${flags.alt}" class="country-icon-img" />
-                    <h4 class="country-name">${name.official}</h4>
-                </div>
-            `;
-        })
-        return htmlSearchList ; 
-    })
-}
-
-function setCountriesListeners(){
-    let countries =  document.querySelectorAll('.country-search-group') ; 
-
-    countries.forEach(country => {
-        country.addEventListener("click",()=>{
-            
-            displayCountry(country.dataset.countryName)
-            
-        })
-    })
-}
-
-function displayCountry(countryName){
-    Allcountries.then(countries=>{
-        let {name,flags,
-            translations,
-            languages,
-            maps,population,
-            area,borders,
-            capital,coatOfArms,
-            continents,currencies,
-            isoCode,idd:{root},
-            landlocked,independent,
-            tld,unMember,timezones,
-            subregion,status,
-            startOfWeek,region} = countries.filter(country => country.name.common  === countryName)[0] ; 
-            section.innerHTML = `<img src="${flags.svg}">` ; 
-    });
-}
-

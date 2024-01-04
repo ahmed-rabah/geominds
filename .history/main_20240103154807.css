@@ -274,10 +274,8 @@ display: none;
   cursor: pointer;
 }
 
-footer{  
-  position: relative;
-  clear: both;
-}
+/* footer{
+} */
 #footer-nav{
   display: grid;
   justify-content :center;

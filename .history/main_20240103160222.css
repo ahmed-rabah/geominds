@@ -273,11 +273,11 @@ display: none;
   padding: var(--size-300) var(--size-500);
   cursor: pointer;
 }
-
+/* 
 footer{  
   position: relative;
   clear: both;
-}
+} */
 #footer-nav{
   display: grid;
   justify-content :center;
