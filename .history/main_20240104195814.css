@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Saira:wght@300;400;500;600;700;800&display=swap');
+@import ('~lucide-static/font/Lucide.css');
 :root{
   /* ********utilities colors ********* */
   --clr-primary-1 :#04364A ; 
@@ -232,8 +233,7 @@ display: none;
   text-transform: capitalize ;
   padding: var(--size-200) var(--size-500);
   border-radius: var(--size-200);
-    height: 100%;
-    /* height: fit-content; */
+  height: fit-content;
   /* background: var(--clr-banana-yellow); */
   transition: transform 0.3s ease;
 }
@@ -268,7 +268,6 @@ display: none;
   line-height: 110%; /* 17.6px */
   text-transform: capitalize;
   width: fit-content;
-  width: -moz-fit-content;
   align-self: center;
   border-radius: var(--size-200);
   /* background-color: var(--clr-light-green); */
@@ -384,8 +383,7 @@ text-transform: uppercase;
     position: static;
     background-color: transparent;
     width: 70vw;
-    height: 100%;
-    /* height: fit-content; */
+    height: fit-content;
     display: block;
   }
   .nav-list{
@@ -397,7 +395,6 @@ text-transform: uppercase;
   padding: 0;
   border: none;
   width: fit-content;
-width: -moz-fit-content;
   }
   .nav-link{
     display: inline;
@@ -409,7 +406,6 @@ width: -moz-fit-content;
   .support-button{
     padding: var(--size-300);
     width: fit-content;
-width: -moz-fit-content;
   }
 
   .heading{

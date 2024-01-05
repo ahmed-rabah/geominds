@@ -119,12 +119,12 @@ function displayCountry(countryName){
                 translations,
                 languages,
                 maps,population,
-                area,borders,gini,
+                area,borders,
                 capital,coatOfArms,
                 continents,currencies,
                 isoCode,idd:{root},
                 landlocked,independent,
-                Itld,unMember,timezones,
+                tld,unMember,timezones,
                 subregion,status,
                 startOfWeek,region,
                 responseFulfiled = true
@@ -179,116 +179,13 @@ function displayCountry(countryName){
                                         </div> 
                                     </div>
                                 </div>
-                                <div className="more-info">
-                                    <div className="info-group">
-                                            <h3 className="label">independent</h3>
-                                            <div className="info">
-                                                <h3>${independent}</h3>
-                                            </div>
-                                    </div> 
-                                    <div className="info-group">
-                                            <h3 className="label">languages</h3>
-                                            <div className="info">
-                                                <h3>${languages}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">currency</h3>
-                                            <div className="info">
-                                                <h3>${currencies}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">area</h3>
-                                            <div className="info">
-                                                <h3>${area}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">land locked</h3>
-                                            <div className="info">
-                                                <h3>${landlocked}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">population</h3>
-                                            <div className="info">
-                                                <h3>${population}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">uNmember</h3>
-                                            <div className="info">
-                                                <h3>${unMember}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">timezone</h3>
-                                            <div className="info">
-                                                <h3>${timezones}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">start of week</h3>
-                                            <div className="info">
-                                                <h3>${startOfWeek}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">itld</h3>
-                                            <div className="info">
-                                                <h3>${Itld}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">iSO Code</h3>
-                                            <div className="info">
-                                                <h3>${isoCode}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">Gini</h3>
-                                            <div className="info">
-                                                <h3>${gini}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">idd root</h3>
-                                            <div className="info">
-                                                <h3>${root}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">status</h3>
-                                            <div className="info">
-                                                <h3>${status}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">maps</h3>
-                                            <div className="info">
-                                                <h3>${maps}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">coat of armes</h3>
-                                            <div className="info">
-                                                <h3>${coatOfArms}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">borders</h3>
-                                            <div className="info">
-                                                <h3>${borders}</h3>
-                                            </div>
-                                    </div>
-                                </div>
+                                
                                 `; 
             
     });
 }
 
-function translationLanguagesList(translations,nativeName = {}){
+function translationLanguagesList(translations,nativeName){
     let translationsCode = Object.keys(translations);
     let nativeKeys = Object.keys(nativeName) ;  
     for (let  key of nativeKeys) {

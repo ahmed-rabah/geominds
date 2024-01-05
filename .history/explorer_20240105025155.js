@@ -119,8 +119,8 @@ function displayCountry(countryName){
                 translations,
                 languages,
                 maps,population,
-                area,borders,gini,
-                capital,coatOfArms,
+                area,borders,gini = null,
+                capital=null,coatOfArms,
                 continents,currencies,
                 isoCode,idd:{root},
                 landlocked,independent,
@@ -264,31 +264,13 @@ function displayCountry(countryName){
                                                 <h3>${status}</h3>
                                             </div>
                                     </div>
-                                    <div className="info-group">
-                                            <h3 className="label">maps</h3>
-                                            <div className="info">
-                                                <h3>${maps}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">coat of armes</h3>
-                                            <div className="info">
-                                                <h3>${coatOfArms}</h3>
-                                            </div>
-                                    </div>
-                                    <div className="info-group">
-                                            <h3 className="label">borders</h3>
-                                            <div className="info">
-                                                <h3>${borders}</h3>
-                                            </div>
-                                    </div>
                                 </div>
                                 `; 
             
     });
 }
 
-function translationLanguagesList(translations,nativeName = {}){
+function translationLanguagesList(translations,nativeName){
     let translationsCode = Object.keys(translations);
     let nativeKeys = Object.keys(nativeName) ;  
     for (let  key of nativeKeys) {

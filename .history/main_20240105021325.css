@@ -232,8 +232,7 @@ display: none;
   text-transform: capitalize ;
   padding: var(--size-200) var(--size-500);
   border-radius: var(--size-200);
-    height: 100%;
-    /* height: fit-content; */
+  height: fit-content;
   /* background: var(--clr-banana-yellow); */
   transition: transform 0.3s ease;
 }
@@ -268,7 +267,7 @@ display: none;
   line-height: 110%; /* 17.6px */
   text-transform: capitalize;
   width: fit-content;
-  width: -moz-fit-content;
+width: -moz-fit-content;
   align-self: center;
   border-radius: var(--size-200);
   /* background-color: var(--clr-light-green); */
@@ -384,8 +383,7 @@ text-transform: uppercase;
     position: static;
     background-color: transparent;
     width: 70vw;
-    height: 100%;
-    /* height: fit-content; */
+    height: fit-content;
     display: block;
   }
   .nav-list{
