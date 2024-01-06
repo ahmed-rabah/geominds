@@ -139,15 +139,15 @@ function displayCountry(countryName){
                                             <div class="info-group official-name-group">
                                                 <h3 class="label">official name</h3>
                                                 <div class="info official-name flex-name">
-                                                    <h3 class="english-official-name">${name.official}</h3>
-                                                    <h3 class="seconadary-official-name">${name.official}</h3>
+                                                    <h3 class="english-oficcial-name">${name.official}.</h3>
+                                                    <h3 class="seconadary-oficcial-name">${name.official}.</h3>
                                                 </div>
                                             </div>
                                             <div class="info-group common-name-group">
                                                 <h3 class="label">common name</h3>
                                                 <div class="info common-name flex-name">
-                                                    <h3 class="english-common-name">${name.common}</h3>
-                                                    <h3 class="seconadary-common-name">${name.common}</h3>
+                                                    <h3 class="english-common-name">${name.common}.</h3>
+                                                    <h3 class="seconadary-common-name">${name.common}.</h3>
                                                 </div>
                                             </div>
                                             <div class="translations-caroussel">

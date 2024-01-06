@@ -319,8 +319,6 @@ transform: scale(1.1);
     }
     .more-info{
         flex-direction: row;
-        flex-wrap: wrap;
-        gap: var(--size-600);
     }
   }
   

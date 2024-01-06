@@ -50,12 +50,6 @@ controlIcons.addEventListener('click',()=>{
     searchIcon.classList.toggle('hide') ; 
 })
 CtnArrow.forEach(arrow=>arrow.addEventListener('click',()=>slideContinents(continentsList,arrow.dataset.arrowDirection)));
-
-
-
-
-// functions
-
 function slideContinents(list,direction){
     // let clientWidth = list.clientWidth ; 
     // let scrollWidth = list.scrollWidth ;
@@ -77,6 +71,11 @@ function slideContinents(list,direction){
         rightArrow.style.display = "block";
     }
 }
+
+
+
+// functions
+
 async function getCountries(){
     try {
         let response = await fetch('https://restcountries.com/v3.1/all')
@@ -134,159 +133,158 @@ function displayCountry(countryName){
              
             translationLanguagesList(translations,name.nativeName);
             section.innerHTML = `<div class="country-names-flag">
-                                        <img src="${flags.svg}" class="country-flag" alt="${name.common} flag">
-                                        <div class="country-names">
-                                            <div class="info-group official-name-group">
-                                                <h3 class="label">official name</h3>
-                                                <div class="info official-name flex-name">
-                                                    <h3 class="english-official-name">${name.official}</h3>
-                                                    <h3 class="seconadary-official-name">${name.official}</h3>
-                                                </div>
+                                    <img src="${flags.svg}" class="country-flag" alt="${name.common} flag">
+                                    <div class="country-names">
+                                        <div className="official-name-group">
+                                            <h3 className="label">official name</h3>
+                                            <div className="official-name flex-name">
+                                                <h3 className="english-oficcial-name">${name.official}</h3>
+                                                <h3 className="seconadary-oficcial-name">${name.official}</h3>
                                             </div>
-                                            <div class="info-group common-name-group">
-                                                <h3 class="label">common name</h3>
-                                                <div class="info common-name flex-name">
-                                                    <h3 class="english-common-name">${name.common}</h3>
-                                                    <h3 class="seconadary-common-name">${name.common}</h3>
-                                                </div>
+                                        </div>
+                                        <div className="common-name-group">
+                                            <h3 className="label">common name</h3>
+                                            <div className="common-name flex-name">
+                                                <h3 className="english-common-name">${name.common}</h3>
+                                                <h3 className="seconadary-common-name">${name.common}</h3>
                                             </div>
-                                            <div class="translations-caroussel">
-                                                <div class="translations-button">
-                                                    <h5>translations</h5>
-                                                    <img src="./images/translations-right.png" class=""alt="translations right arrow">
-                                                    <img src="./images/translations-left.png" class="hide"alt="leftarrow">
-                                                </div>
-                                                ${translationLanguagesList(translations,name.nativeName)}
-                                            
+                                        </div>
+                                        <div className="translations-caroussel">
+                                            <div class="translations-button">
+                                                <h5>translations</h5>
+                                                <img src="./images/translations-right.png" alt="translations right arrow">
+                                                <img src="./images/translations-left.png" alt="leftarrow">
                                             </div>
+                                            ${translationLanguagesList(translations,name.nativeName)}
+                                        
+                                        </div>
                                     </div>
-
-                                    <div class="region">
-                                        <div class="info-group">
-                                            <h3 class="label">capital city</h3>
-                                            <div class="info">
+                                    <div className="region">
+                                        <div className="info-group">
+                                            <h3 className="label">capital city(ies)</h3>
+                                            <div className="info">
                                                 <h3>${capital}</h3>
                                             </div>
                                         </div>  
-                                        <div class="info-group">
-                                            <h3 class="label">continent</h3>
-                                            <div class="info">
+                                        <div className="info-group">
+                                            <h3 className="label">continent(s)</h3>
+                                            <div className="info">
                                                 <h3>${continents}</h3>
                                             </div>
                                         </div>
-                                        <div class="info-group">
-                                            <h3 class="label">subregion</h3>
-                                            <div class="info">
+                                        <div className="info-group">
+                                            <h3 className="label">subregion</h3>
+                                            <div className="info">
                                                 <h3>${subregion}</h3>
                                             </div>
                                         </div> 
                                     </div>
                                 </div>
-                                <div class="more-info">
-                                    <div class="info-group">
-                                            <h3 class="label">independent</h3>
-                                            <div class="info">
+                                <div className="more-info">
+                                    <div className="info-group">
+                                            <h3 className="label">independent</h3>
+                                            <div className="info">
                                                 <h3>${independent}</h3>
                                             </div>
                                     </div> 
-                                    <div class="info-group">
-                                            <h3 class="label">languages</h3>
-                                            <div class="info">
+                                    <div className="info-group">
+                                            <h3 className="label">languages</h3>
+                                            <div className="info">
                                                 <h3>${languages}</h3>
                                             </div>
                                     </div>
-                                    <div class="info-group">
-                                            <h3 class="label">currency</h3>
-                                            <div class="info">
+                                    <div className="info-group">
+                                            <h3 className="label">currency</h3>
+                                            <div className="info">
                                                 <h3>${currencies}</h3>
                                             </div>
                                     </div>
-                                    <div class="info-group">
-                                            <h3 class="label">area</h3>
-                                            <div class="info">
+                                    <div className="info-group">
+                                            <h3 className="label">area</h3>
+                                            <div className="info">
                                                 <h3>${area}</h3>
                                             </div>
                                     </div>
-                                    <div class="info-group">
-                                            <h3 class="label">land locked</h3>
-                                            <div class="info">
+                                    <div className="info-group">
+                                            <h3 className="label">land locked</h3>
+                                            <div className="info">
                                                 <h3>${landlocked}</h3>
                                             </div>
                                     </div>
-                                    <div class="info-group">
-                                            <h3 class="label">population</h3>
-                                            <div class="info">
+                                    <div className="info-group">
+                                            <h3 className="label">population</h3>
+                                            <div className="info">
                                                 <h3>${population}</h3>
                                             </div>
                                     </div>
-                                    <div class="info-group">
-                                            <h3 class="label">uNmember</h3>
-                                            <div class="info">
+                                    <div className="info-group">
+                                            <h3 className="label">uNmember</h3>
+                                            <div className="info">
                                                 <h3>${unMember}</h3>
                                             </div>
                                     </div>
-                                    <div class="info-group">
-                                            <h3 class="label">timezone</h3>
-                                            <div class="info">
+                                    <div className="info-group">
+                                            <h3 className="label">timezone</h3>
+                                            <div className="info">
                                                 <h3>${timezones}</h3>
                                             </div>
                                     </div>
-                                    <div class="info-group">
-                                            <h3 class="label">start of week</h3>
-                                            <div class="info">
+                                    <div className="info-group">
+                                            <h3 className="label">start of week</h3>
+                                            <div className="info">
                                                 <h3>${startOfWeek}</h3>
                                             </div>
                                     </div>
-                                    <div class="info-group">
-                                            <h3 class="label">itld</h3>
-                                            <div class="info">
+                                    <div className="info-group">
+                                            <h3 className="label">itld</h3>
+                                            <div className="info">
                                                 <h3>${Itld}</h3>
                                             </div>
                                     </div>
-                                    <div class="info-group">
-                                            <h3 class="label">iSO Code</h3>
-                                            <div class="info">
+                                    <div className="info-group">
+                                            <h3 className="label">iSO Code</h3>
+                                            <div className="info">
                                                 <h3>${isoCode}</h3>
                                             </div>
                                     </div>
-                                    <div class="info-group">
-                                            <h3 class="label">gini</h3>
-                                            <div class="info">
+                                    <div className="info-group">
+                                            <h3 className="label">Gini</h3>
+                                            <div className="info">
                                                 <h3>${gini}</h3>
                                             </div>
                                     </div>
-                                    <div class="info-group">
-                                            <h3 class="label">idd root</h3>
-                                            <div class="info">
+                                    <div className="info-group">
+                                            <h3 className="label">idd root</h3>
+                                            <div className="info">
                                                 <h3>${root}</h3>
                                             </div>
                                     </div>
-                                    <div class="info-group">
-                                            <h3 class="label">status</h3>
-                                            <div class="info">
+                                    <div className="info-group">
+                                            <h3 className="label">status</h3>
+                                            <div className="info">
                                                 <h3>${status}</h3>
                                             </div>
                                     </div>
-                                    <div class="info-group">
-                                            <h3 class="label">maps</h3>
-                                            <div class="info">
+                                    <div className="info-group">
+                                            <h3 className="label">maps</h3>
+                                            <div className="info">
                                                 <h3>${maps}</h3>
                                             </div>
                                     </div>
-                                    <div class="info-group">
-                                            <h3 class="label">coat of armes</h3>
-                                            <div class="info">
+                                    <div className="info-group">
+                                            <h3 className="label">coat of armes</h3>
+                                            <div className="info">
                                                 <h3>${coatOfArms}</h3>
                                             </div>
                                     </div>
-                                    <div class="info-group">
-                                            <h3 class="label">borders</h3>
-                                            <div class="info">
+                                    <div className="info-group">
+                                            <h3 className="label">borders</h3>
+                                            <div className="info">
                                                 <h3>${borders}</h3>
                                             </div>
                                     </div>
                                 </div>
-    `; 
+                                `; 
             
     });
 }
@@ -317,7 +315,7 @@ function translationLanguagesList(translations,nativeName = {}){
      let translationsList = ` <ul role="list" class="translations-list" data-selected-translation=${translationsCode[0]}>` ; 
      translationsCode.forEach((code,index) => {
         (index == 0)  ? selected ="selected" : selected ="" ; 
-         translationsList += `<li class="translation-item ${selected}" data-language-code="${code}">${languageInfo(code)}</li>`;
+         translationsList += `<li className="translation-item ${selected}" data-language-code="${code}">${languageInfo(code)}</li>`;
      })
      translationsList += `</ul>`;
      return translationsList ; 

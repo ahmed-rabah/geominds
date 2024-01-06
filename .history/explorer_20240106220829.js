@@ -140,6 +140,7 @@ function displayCountry(countryName){
                                                 <h3 class="label">official name</h3>
                                                 <div class="info official-name flex-name">
                                                     <h3 class="english-official-name">${name.official}</h3>
+                                                    <h3>~~/h3>
                                                     <h3 class="seconadary-official-name">${name.official}</h3>
                                                 </div>
                                             </div>

@@ -50,12 +50,6 @@ controlIcons.addEventListener('click',()=>{
     searchIcon.classList.toggle('hide') ; 
 })
 CtnArrow.forEach(arrow=>arrow.addEventListener('click',()=>slideContinents(continentsList,arrow.dataset.arrowDirection)));
-
-
-
-
-// functions
-
 function slideContinents(list,direction){
     // let clientWidth = list.clientWidth ; 
     // let scrollWidth = list.scrollWidth ;
@@ -77,6 +71,11 @@ function slideContinents(list,direction){
         rightArrow.style.display = "block";
     }
 }
+
+
+
+// functions
+
 async function getCountries(){
     try {
         let response = await fetch('https://restcountries.com/v3.1/all')
@@ -134,13 +133,13 @@ function displayCountry(countryName){
              
             translationLanguagesList(translations,name.nativeName);
             section.innerHTML = `<div class="country-names-flag">
-                                        <img src="${flags.svg}" class="country-flag" alt="${name.common} flag">
+                                        <img src="${flags.png}" class="country-flag" alt="${name.common} flag">
                                         <div class="country-names">
                                             <div class="info-group official-name-group">
                                                 <h3 class="label">official name</h3>
                                                 <div class="info official-name flex-name">
-                                                    <h3 class="english-official-name">${name.official}</h3>
-                                                    <h3 class="seconadary-official-name">${name.official}</h3>
+                                                    <h3 class="english-oficcial-name">${name.official}</h3>
+                                                    <h3 class="seconadary-oficcial-name">${name.official}</h3>
                                                 </div>
                                             </div>
                                             <div class="info-group common-name-group">
@@ -153,8 +152,8 @@ function displayCountry(countryName){
                                             <div class="translations-caroussel">
                                                 <div class="translations-button">
                                                     <h5>translations</h5>
-                                                    <img src="./images/translations-right.png" class=""alt="translations right arrow">
-                                                    <img src="./images/translations-left.png" class="hide"alt="leftarrow">
+                                                    <img src="./images/translations-right.png" alt="translations right arrow">
+                                                    <img src="./images/translations-left.png" alt="leftarrow">
                                                 </div>
                                                 ${translationLanguagesList(translations,name.nativeName)}
                                             
@@ -286,7 +285,7 @@ function displayCountry(countryName){
                                             </div>
                                     </div>
                                 </div>
-    `; 
+                                `; 
             
     });
 }

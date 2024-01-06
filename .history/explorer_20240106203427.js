@@ -139,8 +139,8 @@ function displayCountry(countryName){
                                             <div class="info-group official-name-group">
                                                 <h3 class="label">official name</h3>
                                                 <div class="info official-name flex-name">
-                                                    <h3 class="english-official-name">${name.official}</h3>
-                                                    <h3 class="seconadary-official-name">${name.official}</h3>
+                                                    <h3 class="english-oficcial-name">${name.official}</h3>
+                                                    <h3 class="seconadary-oficcial-name">${name.official}</h3>
                                                 </div>
                                             </div>
                                             <div class="info-group common-name-group">
@@ -314,7 +314,7 @@ function translationLanguagesList(translations,nativeName = {}){
             }
      }) ; 
      let selected = "";
-     let translationsList = ` <ul role="list" class="translations-list" data-selected-translation=${translationsCode[0]}>` ; 
+     let translationsList = ` <ul class="translations-list" data-selected-translation=${translationsCode[0]}>` ; 
      translationsCode.forEach((code,index) => {
         (index == 0)  ? selected ="selected" : selected ="" ; 
          translationsList += `<li class="translation-item ${selected}" data-language-code="${code}">${languageInfo(code)}</li>`;

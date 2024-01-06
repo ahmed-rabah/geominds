@@ -317,11 +317,7 @@ transform: scale(1.1);
     .horizontal-arrow{
         display: none;
     }
-    .more-info{
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: var(--size-600);
-    }
+
   }
   
   @media screen and (min-width: 900px) {
