@@ -396,7 +396,7 @@ transform: scale(1.1);
         flex-wrap: wrap;
 
     }
-    .region{
+    .region,.location{
         justify-items: baseline;
     }
   }

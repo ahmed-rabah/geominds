@@ -396,9 +396,6 @@ transform: scale(1.1);
         flex-wrap: wrap;
 
     }
-    .region{
-        justify-items: baseline;
-    }
   }
   
   @media screen and (min-width: 1360px) {

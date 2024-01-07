@@ -268,27 +268,25 @@ function displayCountry(countryName){
                                                 <h3>${status}</h3>
                                             </div>
                                     </div>
+                                    <div class="info-group">
+                                            <h3 class="label">maps</h3>
+                                            <div class="info">
+                                                <h3>${maps}</h3>
+                                            </div>
                                     </div>
-                                    <div class="location">
-                                        <div class="info-group">
-                                                <h3 class="label">maps</h3>
-                                                <div class="info">
-                                                    <h3>${maps}</h3>
-                                                </div>
-                                        </div>
-                                        <div class="info-group">
-                                                <h3 class="label">coat of armes</h3>
-                                                <div class="info">
-                                                    <h3>${coatOfArms}</h3>
-                                                </div>
-                                        </div>
-                                        <div class="info-group">
-                                                <h3 class="label">borders</h3>
-                                                <div class="info">
-                                                    <h3>${borders}</h3>
-                                                </div>
-                                        </div>
+                                    <div class="info-group">
+                                            <h3 class="label">coat of armes</h3>
+                                            <div class="info">
+                                                <h3>${coatOfArms}</h3>
+                                            </div>
                                     </div>
+                                    <div class="info-group">
+                                            <h3 class="label">borders</h3>
+                                            <div class="info">
+                                                <h3>${borders}</h3>
+                                            </div>
+                                    </div>
+                                </div>
     `; 
             
     });

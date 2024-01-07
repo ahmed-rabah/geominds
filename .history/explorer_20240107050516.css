@@ -345,6 +345,7 @@ transform: scale(1.1);
     } */
      .region,.location{
         grid-template-columns: repeat(3 , 1fr);
+        justify-items: baseline;
     }
     .horizontal-arrow{
         display: none;
@@ -395,9 +396,6 @@ transform: scale(1.1);
         column-gap: var(--size-400) ; 
         flex-wrap: wrap;
 
-    }
-    .region{
-        justify-items: baseline;
     }
   }
   

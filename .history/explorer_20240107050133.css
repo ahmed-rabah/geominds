@@ -340,11 +340,8 @@ transform: scale(1.1);
     .translations-caroussel{
         justify-content:left;
     }
-    /* .region,.location{
+    .region,.location{
         flex-direction: row;
-    } */
-     .region,.location{
-        grid-template-columns: repeat(3 , 1fr);
     }
     .horizontal-arrow{
         display: none;
@@ -395,9 +392,6 @@ transform: scale(1.1);
         column-gap: var(--size-400) ; 
         flex-wrap: wrap;
 
-    }
-    .region{
-        justify-items: baseline;
     }
   }
   
