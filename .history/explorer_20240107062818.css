@@ -370,7 +370,7 @@ transform: scale(1.1);
         padding-inline: var(--size-400);
     }
     .continents-list{
-        gap: var(--size-400);
+        gap: var(--size-900);
     }
   }
   
@@ -413,9 +413,6 @@ transform: scale(1.1);
     .country-names-flag{
         grid-template-columns: minmax(300px, .7fr) 1fr;
     }
-    .continents-list{
-        gap: var(--size-900);
-    }
     /* :root{
         --fs-body : var(--fs-24) ; 
      } */
@@ -432,10 +429,6 @@ transform: scale(1.1);
     .country-names-flag .country-flag{
         max-height: 40vh;
         
-    }
-    .continent-btn,
-    .nav-item{
-        font-size: var(--fs-body );
     }
    /* .continents-list{
        gap: var(--size-900);

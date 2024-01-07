@@ -415,6 +415,10 @@ transform: scale(1.1);
     }
     .continents-list{
         gap: var(--size-900);
+        font-size: var(--fs-body);
+    }
+    .nav-link{
+        font-size: var(--fs-body );
     }
     /* :root{
         --fs-body : var(--fs-24) ; 
@@ -432,10 +436,6 @@ transform: scale(1.1);
     .country-names-flag .country-flag{
         max-height: 40vh;
         
-    }
-    .continent-btn,
-    .nav-item{
-        font-size: var(--fs-body );
     }
    /* .continents-list{
        gap: var(--size-900);

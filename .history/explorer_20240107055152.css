@@ -203,10 +203,9 @@ transform: scale(1.1);
 .country-names-flag .country-flag{
     border: 2px solid var(--clr-dark-blue);
     grid-area: flag;
-    max-height: 30vh;
-    justify-self: center;
+    max-height: 40vh;
     /* width: 180px; */
-    /* width: auto; */
+   /* width: 100%; */
 }
 .country-names-flag .country-names{
     height: 100%;
@@ -226,7 +225,7 @@ transform: scale(1.1);
     text-align: center;
     font-family: var(--ff-body);
     font-size: var(--fs-body);
-    font-weight: var(--fw-regular);
+    font-weight: var(--fw-semi-bold);
     line-height: 170%; /* 20.4px */
     letter-spacing: 0.6px;
     text-decoration-line: underline;
@@ -237,7 +236,7 @@ transform: scale(1.1);
     text-align: center;
     font-family: var(--ff-body);
     font-size: var(--fs-body);
-    font-weight: var(--fw-regular);
+    font-weight: var(--fw-semi-bold);
     text-transform: capitalize;
 }
 
@@ -302,17 +301,12 @@ transform: scale(1.1);
 .more-info{
     display: grid;
    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-   
-   /* align-self: center; */
    width: 100%;
 }
 @media screen and (min-width: 768px) {
     /* main{
     min-height: 70vh;
     } */
-    .defaultImage{
-        height: 100%;
-    }
     .info-group{
         padding-block: 0;
     }
@@ -405,16 +399,13 @@ transform: scale(1.1);
     .region{
         justify-items: baseline;
         align-self: baseline;
-        padding-top: var(--size-200);
+        padding-top: auto;
     }
   }
   
   @media screen and (min-width: 1360px) {
     .country-names-flag{
         grid-template-columns: minmax(300px, .7fr) 1fr;
-    }
-    .continents-list{
-        gap: var(--size-900);
     }
     /* :root{
         --fs-body : var(--fs-24) ; 
@@ -428,14 +419,6 @@ transform: scale(1.1);
    :root{
        --fs-body : var(--fs-24) ; 
        --fs-nav-link : var(--fs-18) ;
-    }
-    .country-names-flag .country-flag{
-        max-height: 40vh;
-        
-    }
-    .continent-btn,
-    .nav-item{
-        font-size: var(--fs-body );
     }
    /* .continents-list{
        gap: var(--size-900);
