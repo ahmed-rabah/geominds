@@ -242,17 +242,16 @@ transform: scale(1.1);
 }
 
 .translations-caroussel{
-    display: grid;
-    grid-template-columns:minmax(130px,170px) minmax(100px, 1fr);
-    /* justify-content: center; */
-    /* align-items: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     /* padding: 0; */
 }
 .translations-button{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    gap: var(--size-300);
+    gap: var(--size-200);
     font-weight: var(--fw-regular);
     font-family: var(--ff-primary);
     background-color: var(--clr-primary-1);
@@ -265,13 +264,11 @@ transform: scale(1.1);
     display: flex;
     justify-content: flex-start ; 
     align-items: center;
-    width: 100%;
+    width: 100px;
     border: 1px solid var(--clr-primary-1);
     overflow: hidden;
-    overflow-x: scroll;
-    max-width: 900px;
-    /* display: none; */
     /* line-height: 90%; */
+    /* overflow-x: scroll; */
     /* width: 10vw; */
 }
 .translations-list::-webkit-scrollbar {
@@ -280,16 +277,7 @@ transform: scale(1.1);
 .translation-item{
     white-space: nowrap;
     padding: var(--size-100) var(--size-300);
-    cursor: pointer;
-    border-right: 1px solid var(--clr-primary-1);
 
-}
-.translation-item:hover{
-    background-color: var(--clr-light-white)
-}
-.translations-list .selected{
-    background-color: var(--clr-primary-2);
-    color: white;
 }
 /* .region,.location{
     display: flex;

@@ -294,17 +294,17 @@ function displayCountry(countryName){
     });
 }
 
-// function displayArrValues(Arr,type){
-//         if (Arr.length == 1) {
-//             return `<h3>${Arr[0]}</h3>` ;             
-//         }
-//         let content = `<img src="./images/left-arrow.png" class="left stop" alt="left arrow">` ; 
-//         Arr.forEach(item=>{
+function displayArrValues(Arr,type){
+        if (Arr.length == 1) {
+            return `<h3>${Arr[0]}</h3>` ;             
+        }
+        let content = `<img src="./images/left-arrow.png" class="left stop" alt="left arrow">` ; 
+        Arr.forEach(item=>{
 
-//         })
-//         content += `<img src="./images/right-arrow.png" class="right" alt="right arrow">` ; 
-//         return content ; 
-// }
+        })
+        content += `<img src="./images/right-arrow.png" class="right" alt="right arrow">` ; 
+        return content ; 
+}
 
 function translationListListeners(translations , native){
         let leftTransBtn =  document.querySelector('.translations-button .left') ; 

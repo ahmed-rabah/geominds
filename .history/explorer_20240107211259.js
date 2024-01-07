@@ -166,7 +166,7 @@ function displayCountry(countryName){
                                         <div class="info-group">
                                             <h3 class="label">capital city</h3>
                                             <div class="info">
-                                                <h3>${capital}</h3>
+                                            <h3>${capital}</h3><h3>${capital}</h3><h3>${capital}</h3>
                                             </div>
                                         </div>  
                                         <div class="info-group">
@@ -293,18 +293,6 @@ function displayCountry(countryName){
             translationListListeners(translations, name.nativeName) ; 
     });
 }
-
-// function displayArrValues(Arr,type){
-//         if (Arr.length == 1) {
-//             return `<h3>${Arr[0]}</h3>` ;             
-//         }
-//         let content = `<img src="./images/left-arrow.png" class="left stop" alt="left arrow">` ; 
-//         Arr.forEach(item=>{
-
-//         })
-//         content += `<img src="./images/right-arrow.png" class="right" alt="right arrow">` ; 
-//         return content ; 
-// }
 
 function translationListListeners(translations , native){
         let leftTransBtn =  document.querySelector('.translations-button .left') ; 

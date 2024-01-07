@@ -284,9 +284,6 @@ transform: scale(1.1);
     border-right: 1px solid var(--clr-primary-1);
 
 }
-.translation-item:hover{
-    background-color: var(--clr-light-white)
-}
 .translations-list .selected{
     background-color: var(--clr-primary-2);
     color: white;

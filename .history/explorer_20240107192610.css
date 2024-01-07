@@ -243,7 +243,7 @@ transform: scale(1.1);
 
 .translations-caroussel{
     display: grid;
-    grid-template-columns:minmax(130px,170px) minmax(100px, 1fr);
+    grid-template-columns:minmax(130px,220px) minmax(100px, 1fr);
     /* justify-content: center; */
     /* align-items: center; */
     /* padding: 0; */
@@ -280,16 +280,7 @@ transform: scale(1.1);
 .translation-item{
     white-space: nowrap;
     padding: var(--size-100) var(--size-300);
-    cursor: pointer;
-    border-right: 1px solid var(--clr-primary-1);
 
-}
-.translation-item:hover{
-    background-color: var(--clr-light-white)
-}
-.translations-list .selected{
-    background-color: var(--clr-primary-2);
-    color: white;
 }
 /* .region,.location{
     display: flex;

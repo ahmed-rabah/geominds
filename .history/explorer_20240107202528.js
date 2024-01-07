@@ -290,46 +290,30 @@ function displayCountry(countryName){
                                         </div>
                                     </div>
     `; 
-            translationListListeners(translations, name.nativeName) ; 
+       let leftTransBtn =  document.querySelector('.translations-button .left') ; 
+       let rightTransBtn =  document.querySelector('.translations-button .right') ; 
+       let translationList =  document.querySelector('.translations-list') ; 
+    document.querySelector('.translations-button').addEventListener('click',()=>{
+        [translationList,leftTransBtn,rightTransBtn].forEach(element=>{element.classList.toggle('hide')})
+    })
+    let selectedTranslationItem = document.querySelector('.translation-item.selected').dataset.languageCode ; 
+    
+    let {common , official} = translations[selectedTranslationItem] ?? name.nativeName[selectedTranslationItem]
+    document.querySelector('.seconadary-common-name').innerHTML = common;
+    document.querySelector('.seconadary-official-name').innerHTML = official;
+    // document.querySelector('.official-name');
+   let translationItems = document.querySelectorAll('.translation-item') ; 
+        translationItems.forEach(translation=>{
+            translation.addEventListener("click",()=>{
+                document.querySelector('.translation-item.selected').classList.remove('selected');
+                translation.classList.add('selected'); 
+                let language = translation.dataset.languageCode ; 
+                let {common , official} = translations[language] ?? name.nativeName[language]
+                document.querySelector('.seconadary-common-name').innerHTML = common;
+                document.querySelector('.seconadary-official-name').innerHTML = official;
+            })
+        })    
     });
-}
-
-// function displayArrValues(Arr,type){
-//         if (Arr.length == 1) {
-//             return `<h3>${Arr[0]}</h3>` ;             
-//         }
-//         let content = `<img src="./images/left-arrow.png" class="left stop" alt="left arrow">` ; 
-//         Arr.forEach(item=>{
-
-//         })
-//         content += `<img src="./images/right-arrow.png" class="right" alt="right arrow">` ; 
-//         return content ; 
-// }
-
-function translationListListeners(translations , native){
-        let leftTransBtn =  document.querySelector('.translations-button .left') ; 
-        let rightTransBtn =  document.querySelector('.translations-button .right') ; 
-        let translationList =  document.querySelector('.translations-list') ; 
-
-        document.querySelector('.translations-button').addEventListener('click',()=>{
-            [translationList,leftTransBtn,rightTransBtn].forEach(element=>{element.classList.toggle('hide')})
-        })
-        let selectedTranslationItem = document.querySelector('.translation-item.selected').dataset.languageCode ; 
-        let {common , official} = translations[selectedTranslationItem] ?? native[selectedTranslationItem] ;
-        document.querySelector('.seconadary-common-name').innerHTML = common;
-        document.querySelector('.seconadary-official-name').innerHTML = official;
-        // document.querySelector('.official-name');
-        let translationItems = document.querySelectorAll('.translation-item') ; 
-            translationItems.forEach(translation=>{
-                translation.addEventListener("click",()=>{
-                    document.querySelector('.translation-item.selected').classList.remove('selected');
-                    translation.classList.add('selected'); 
-                    let language = translation.dataset.languageCode ; 
-                    let {common , official} = translations[language] ?? native[language]
-                    document.querySelector('.seconadary-common-name').innerHTML = common;
-                    document.querySelector('.seconadary-official-name').innerHTML = official;
-                })
-            })  
 }
 
 function translationLanguagesList(translations,nativeName = {}){

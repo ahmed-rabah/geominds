@@ -110,7 +110,14 @@ function setCountriesListeners(){
         country.addEventListener("click",()=>{
 
             displayCountry(country.dataset.countryName)
-                       
+            
+            let translationItems = document.querySelectorAll('.translation-item') ; 
+            translationItems.forEach(translation=>{
+                translation.addEventListener("click",()=>{
+                    let language = translation.dataset.languageCode ; 
+                })
+            })
+            
         })
     })
 }
@@ -132,7 +139,7 @@ function displayCountry(countryName){
                 responseFulfiled = true
             } = countries.filter(country => country.name.common  === countryName)[0] ?? {name: countryName , responseFulfiled : false} ; 
              
-            // translationLanguagesList(translations,name.nativeName);
+            translationLanguagesList(translations,name.nativeName);
             section.classList.add("justify-start");
             section.innerHTML = `<div class="country-names-flag">
                                         <img src="${flags.svg}" class="country-flag" alt="${name.common} flag">
@@ -146,7 +153,7 @@ function displayCountry(countryName){
                                             </div>
                                             <div class="info-group common-name-group">
                                                 <h3 class="label">common name</h3>
-                                                <div class="info common-name">
+                                                <div class="info common-name flex-name">
                                                     <h3 class="english-common-name">${name.common}</h3>
                                                     <h3 class="seconadary-common-name">${name.common}</h3>
                                                 </div>
@@ -154,8 +161,8 @@ function displayCountry(countryName){
                                             <div class="translations-caroussel">
                                                 <div class="translations-button">
                                                     <h5>translations</h5>
-                                                    <img src="./images/translations-right.png" class="right" alt="translations right arrow">
-                                                    <img src="./images/translations-left.png" class="left hide" alt="leftarrow">
+                                                    <img src="./images/translations-right.png" class=""alt="translations right arrow">
+                                                    <img src="./images/translations-left.png" class="hide"alt="leftarrow">
                                                 </div>
                                                 ${translationLanguagesList(translations,name.nativeName)}
                                             
@@ -290,46 +297,8 @@ function displayCountry(countryName){
                                         </div>
                                     </div>
     `; 
-            translationListListeners(translations, name.nativeName) ; 
+            
     });
-}
-
-// function displayArrValues(Arr,type){
-//         if (Arr.length == 1) {
-//             return `<h3>${Arr[0]}</h3>` ;             
-//         }
-//         let content = `<img src="./images/left-arrow.png" class="left stop" alt="left arrow">` ; 
-//         Arr.forEach(item=>{
-
-//         })
-//         content += `<img src="./images/right-arrow.png" class="right" alt="right arrow">` ; 
-//         return content ; 
-// }
-
-function translationListListeners(translations , native){
-        let leftTransBtn =  document.querySelector('.translations-button .left') ; 
-        let rightTransBtn =  document.querySelector('.translations-button .right') ; 
-        let translationList =  document.querySelector('.translations-list') ; 
-
-        document.querySelector('.translations-button').addEventListener('click',()=>{
-            [translationList,leftTransBtn,rightTransBtn].forEach(element=>{element.classList.toggle('hide')})
-        })
-        let selectedTranslationItem = document.querySelector('.translation-item.selected').dataset.languageCode ; 
-        let {common , official} = translations[selectedTranslationItem] ?? native[selectedTranslationItem] ;
-        document.querySelector('.seconadary-common-name').innerHTML = common;
-        document.querySelector('.seconadary-official-name').innerHTML = official;
-        // document.querySelector('.official-name');
-        let translationItems = document.querySelectorAll('.translation-item') ; 
-            translationItems.forEach(translation=>{
-                translation.addEventListener("click",()=>{
-                    document.querySelector('.translation-item.selected').classList.remove('selected');
-                    translation.classList.add('selected'); 
-                    let language = translation.dataset.languageCode ; 
-                    let {common , official} = translations[language] ?? native[language]
-                    document.querySelector('.seconadary-common-name').innerHTML = common;
-                    document.querySelector('.seconadary-official-name').innerHTML = official;
-                })
-            })  
 }
 
 function translationLanguagesList(translations,nativeName = {}){
@@ -355,12 +324,11 @@ function translationLanguagesList(translations,nativeName = {}){
             }
      }) ; 
      let selected = "";
-     let translationsList = ` <ul role="list" class="translations-list hide" data-selected-translation=${translationsCode[0]}>` ; 
+     let translationsList = ` <ul role="list" class="translations-list" data-selected-translation=${translationsCode[0]}>` ; 
      translationsCode.forEach((code,index) => {
         (index == 0)  ? selected ="selected" : selected ="" ; 
          translationsList += `<li class="translation-item ${selected}" data-language-code="${code}">${languageInfo(code)}</li>`;
      })
      translationsList += `</ul>`;
-
      return translationsList ; 
 }
