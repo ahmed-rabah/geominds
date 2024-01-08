@@ -109,9 +109,7 @@ function setCountriesListeners(){
     countries.forEach(country => {
         country.addEventListener("click",()=>{
 
-            displayCountry(country.dataset.countryName) ; 
-            // infoMultiValueListeners() ;           
-
+            displayCountry(country.dataset.countryName)
         })
     })
 }
@@ -289,7 +287,7 @@ function displayCountry(countryName){
                                     </div>
     `; 
     translationListListeners(translations, name.nativeName) ; 
-    infoMultiValueListeners() ; 
+    infoMultiValueListeners() ;           
     });
 }
 
@@ -310,7 +308,7 @@ function countryInfoTasform(label,info){
             </div>` ;   
         }
         let content = `<div class="label-group">
-                            <h3 class="label">${label}<span style="text-transform:lowercase">(ies)</span></h3>
+                            <h3 class="label">${label}</h3>
                             <div class="toggle-values">
                                 <img src="./images/plus.png" alt="plus">
                                 <img src="./images/minus.png" class="hide" alt="minus">
@@ -319,8 +317,7 @@ function countryInfoTasform(label,info){
                       <ul class="info initial">` ; 
             info.forEach((item,index)=>{
                 let hide = index != 0 ? `class="hide"` : "" ;
-                let first = index == 0 ? `class="first-element"` : "" ;
-                content += `<li ${first} ${hide}>
+                content += `<li ${hide}>
                                 <h3>${item}</h3>
                             </li>
                             ` ; 
@@ -361,21 +358,12 @@ function translationListListeners(translations , native){
          
 function infoMultiValueListeners(){
     let toggleValues = document.querySelectorAll('.toggle-values') ; 
-    // elem.addEventListener('click',()=>{
-        toggleValues.forEach(toggleElem=>{
-            toggleElem.addEventListener('click',()=>{
-            let btns  = toggleElem.childNodes ; 
-                btns.forEach(btn=>{
-                        if(btn.nodeName == "IMG"){
-                            btn.classList.toggle('hide') ; 
-                        }
-                    })
-                    let listItems = toggleElem.parentElement.nextElementSibling.childNodes ; 
-                    console.log(listItems);
-                    listItems.forEach(item=>{ if(item.nodeName =="LI" && !item.classList.contains('first-element')){ item.classList.toggle('hide') }})
-            })
-
-        })
+    for(let toggle in toggleValues){
+        for (let btn in toggle.children) {
+            console.log(btn);
+           btn.classList.toggle("hide") ; 
+        }
+    }
 }   
 
 function translationLanguagesList(translations,nativeName = {}){

@@ -310,7 +310,7 @@ function countryInfoTasform(label,info){
             </div>` ;   
         }
         let content = `<div class="label-group">
-                            <h3 class="label">${label}<span style="text-transform:lowercase">(ies)</span></h3>
+                            <h3 class="label">${label}</h3>
                             <div class="toggle-values">
                                 <img src="./images/plus.png" alt="plus">
                                 <img src="./images/minus.png" class="hide" alt="minus">
@@ -370,9 +370,9 @@ function infoMultiValueListeners(){
                             btn.classList.toggle('hide') ; 
                         }
                     })
-                    let listItems = toggleElem.parentElement.nextElementSibling.childNodes ; 
+                    let listItems = toggleElem.parentElement.nextElementSibling.childNodes.splice(0,1) ; 
                     console.log(listItems);
-                    listItems.forEach(item=>{ if(item.nodeName =="LI" && !item.classList.contains('first-element')){ item.classList.toggle('hide') }})
+                    listItems.forEach(item=>{ if(item.nodeName =="LI"){ item.classList.toggle('hide') }})
             })
 
         })

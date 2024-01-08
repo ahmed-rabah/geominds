@@ -126,9 +126,8 @@ section h1 span{
 .control-icons,
 .label-group{
     display: flex ; 
-    justify-content: center;
-    align-items: center;
-    gap: var(--size-100);
+    /* justify-content: center;
+    align-items: center; */
 }
 .icon-search,
 .icon-close-search{
@@ -318,7 +317,6 @@ transform: scale(1.1);
     gap: var(--size-100);
     align-items: center;
     justify-content: center;
-    flex-direction: column;
 }
 .left,.right ,.toggle-values{
     cursor: pointer;

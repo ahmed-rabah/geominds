@@ -310,7 +310,7 @@ function countryInfoTasform(label,info){
             </div>` ;   
         }
         let content = `<div class="label-group">
-                            <h3 class="label">${label}<span style="text-transform:lowercase">(ies)</span></h3>
+                            <h3 class="label">${label}(ies)</h3>
                             <div class="toggle-values">
                                 <img src="./images/plus.png" alt="plus">
                                 <img src="./images/minus.png" class="hide" alt="minus">

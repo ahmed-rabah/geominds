@@ -123,12 +123,10 @@ section h1 span{
     text-shadow: 4px 2px 20px var(--clr-primary-2);
 
 }
-.control-icons,
-.label-group{
+.control-icons{
     display: flex ; 
     justify-content: center;
     align-items: center;
-    gap: var(--size-100);
 }
 .icon-search,
 .icon-close-search{
@@ -313,21 +311,11 @@ transform: scale(1.1);
     /* flex-direction: column; */
     /* margin: 0; */
 }
-.region .info{
+.region{
     display: flex;
     gap: var(--size-100);
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-}
-.left,.right ,.toggle-values{
-    cursor: pointer;
-}
-
-.stop{
-    /* background-color: var(--clr-light-white); */
-    opacity: 0.3;
-    cursor: default;
 }
 .location{
     padding-top: var(--size-400);

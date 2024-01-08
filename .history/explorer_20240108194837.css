@@ -123,12 +123,10 @@ section h1 span{
     text-shadow: 4px 2px 20px var(--clr-primary-2);
 
 }
-.control-icons,
-.label-group{
+.control-icons{
     display: flex ; 
     justify-content: center;
     align-items: center;
-    gap: var(--size-100);
 }
 .icon-search,
 .icon-close-search{
@@ -318,7 +316,6 @@ transform: scale(1.1);
     gap: var(--size-100);
     align-items: center;
     justify-content: center;
-    flex-direction: column;
 }
 .left,.right ,.toggle-values{
     cursor: pointer;
@@ -428,7 +425,8 @@ transform: scale(1.1);
             'flag names'
             'flag region';
     }
-    .country-names .info-group{
+    .country-names .info-group ,
+    .label-group{
         display: flex;
         /* justify-content: space-between ;  */
         column-gap: var(--size-400) ; 

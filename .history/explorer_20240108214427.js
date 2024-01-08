@@ -165,7 +165,7 @@ function displayCountry(countryName){
 
                                     <div class="region">
                                         <div class="info-group">
-                                        ${countryInfoTasform("capital city" , capital)}
+                                        ${countryInfoTasform("capital city" , [])}
                                         </div>  
                                         <div class="info-group">
                                             <h3 class="label">continent</h3>

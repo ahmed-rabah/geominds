@@ -132,7 +132,7 @@ function displayCountry(countryName){
                 startOfWeek,region,
                 responseFulfiled = true
             } = countries.filter(country => country.name.common  === countryName)[0] ?? {name: countryName , responseFulfiled : false} ; 
-             
+             let test =[]; 
             // translationLanguagesList(translations,name.nativeName);
             section.classList.add("justify-start");
             section.innerHTML = `<div class="country-names-flag">
@@ -165,7 +165,7 @@ function displayCountry(countryName){
 
                                     <div class="region">
                                         <div class="info-group">
-                                        ${countryInfoTasform("capital city" , capital)}
+                                        ${countryInfoTasform("capital city" , test)}
                                         </div>  
                                         <div class="info-group">
                                             <h3 class="label">continent</h3>

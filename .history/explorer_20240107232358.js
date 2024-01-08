@@ -109,9 +109,8 @@ function setCountriesListeners(){
     countries.forEach(country => {
         country.addEventListener("click",()=>{
 
-            displayCountry(country.dataset.countryName) ; 
-            // infoMultiValueListeners() ;           
-
+            displayCountry(country.dataset.countryName)
+                       
         })
     })
 }
@@ -155,7 +154,7 @@ function displayCountry(countryName){
                                             <div class="translations-caroussel">
                                                 <div class="translations-button">
                                                     <h5>translations</h5>
-                                                    <img src="./images/small-right-arrow.svg" class="right" alt="translations right arrow">
+                                                    <img src="./images/small-right-arrow.svg" class="right" style="height :100%" alt="translations right arrow">
                                                     <img src="./images/small-left-arrow.svg" class="left hide" alt="leftarrow">
                                                 </div>
                                                 ${translationLanguagesList(translations,name.nativeName)}
@@ -165,7 +164,10 @@ function displayCountry(countryName){
 
                                     <div class="region">
                                         <div class="info-group">
-                                        ${countryInfoTasform("capital city" , capital)}
+                                            <h3 class="label">capital city</h3>
+                                            <div class="info">
+                                                <h3>${capital}</h3>
+                                            </div>
                                         </div>  
                                         <div class="info-group">
                                             <h3 class="label">continent</h3>
@@ -288,44 +290,23 @@ function displayCountry(countryName){
                                         </div>
                                     </div>
     `; 
-    translationListListeners(translations, name.nativeName) ; 
-    infoMultiValueListeners() ; 
+            translationListListeners(translations, name.nativeName) ; 
     });
 }
 
-function countryInfoTasform(label,info){
-    if(typeof info === 'object'){
-        if (info.length == 1) {
-            return `
-            <h3 class="label">${label}</h3>
-            <div class="info">
-            <h3>${info[0]}</h3>
-            </div>` ;             
-        }
-        if(info.length == 0){
-            return `
-            <h3 class="label">${label}</h3>
-            <div class="info">
-            <h3>has no ${[info]}</h3>
-            </div>` ;   
-        }
-        let content = `<div class="label-group">
-                            <h3 class="label">${label}<span style="text-transform:lowercase">(ies)</span></h3>
-                            <div class="toggle-values">
-                                <img src="./images/plus.png" alt="plus">
-                                <img src="./images/minus.png" class="hide" alt="minus">
-                            </div>
-                      </div>
-                      <ul class="info initial">` ; 
-            info.forEach((item,index)=>{
-                let hide = index != 0 ? `class="hide"` : "" ;
-                let first = index == 0 ? `class="first-element"` : "" ;
-                content += `<li ${first} ${hide}>
-                                <h3>${item}</h3>
-                            </li>
-                            ` ; 
+function countryInfoTasform(info,type){
+        if(typeof info === 'object'){
+            if (info.length == 1) {
+                return `<h3>${Arr[0]}</h3>` ;             
+            }
+            if(info.length == 0){
+                return `<h3>vide</h3>` ; 
+            }
+            let content = `<img src="./images/left-arrow.png" class="left stop" alt="left arrow">` ; 
+            info.forEach(item=>{
+                
             })
-            content += `</ul>` ; 
+            content += `<img src="./images/right-arrow.png" class="right" alt="right arrow">` ; 
             return content ; 
         }else{
 
@@ -357,26 +338,6 @@ function translationListListeners(translations , native){
                 })
             })  
 }
-
-         
-function infoMultiValueListeners(){
-    let toggleValues = document.querySelectorAll('.toggle-values') ; 
-    // elem.addEventListener('click',()=>{
-        toggleValues.forEach(toggleElem=>{
-            toggleElem.addEventListener('click',()=>{
-            let btns  = toggleElem.childNodes ; 
-                btns.forEach(btn=>{
-                        if(btn.nodeName == "IMG"){
-                            btn.classList.toggle('hide') ; 
-                        }
-                    })
-                    let listItems = toggleElem.parentElement.nextElementSibling.childNodes ; 
-                    console.log(listItems);
-                    listItems.forEach(item=>{ if(item.nodeName =="LI" && !item.classList.contains('first-element')){ item.classList.toggle('hide') }})
-            })
-
-        })
-}   
 
 function translationLanguagesList(translations,nativeName = {}){
     let translationsCode = Object.keys(translations);

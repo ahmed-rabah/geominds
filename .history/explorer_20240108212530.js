@@ -310,7 +310,7 @@ function countryInfoTasform(label,info){
             </div>` ;   
         }
         let content = `<div class="label-group">
-                            <h3 class="label">${label}<span style="text-transform:lowercase">(ies)</span></h3>
+                            <h3 class="label">${label}</h3>
                             <div class="toggle-values">
                                 <img src="./images/plus.png" alt="plus">
                                 <img src="./images/minus.png" class="hide" alt="minus">
@@ -319,8 +319,7 @@ function countryInfoTasform(label,info){
                       <ul class="info initial">` ; 
             info.forEach((item,index)=>{
                 let hide = index != 0 ? `class="hide"` : "" ;
-                let first = index == 0 ? `class="first-element"` : "" ;
-                content += `<li ${first} ${hide}>
+                content += `<li ${hide}>
                                 <h3>${item}</h3>
                             </li>
                             ` ; 
@@ -370,12 +369,11 @@ function infoMultiValueListeners(){
                             btn.classList.toggle('hide') ; 
                         }
                     })
-                    let listItems = toggleElem.parentElement.nextElementSibling.childNodes ; 
-                    console.log(listItems);
-                    listItems.forEach(item=>{ if(item.nodeName =="LI" && !item.classList.contains('first-element')){ item.classList.toggle('hide') }})
             })
 
         })
+    let listItems = toggleValues.parentElement.nextElementSibling.children ; 
+    listItems.forEach(item=>item.classList.toggle('hide'))
 }   
 
 function translationLanguagesList(translations,nativeName = {}){
