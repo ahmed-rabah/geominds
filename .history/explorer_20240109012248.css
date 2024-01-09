@@ -339,7 +339,7 @@ transform: scale(1.1);
    /* align-self: center; */
    width: 100%;
 }
-.key{
+.symbol{
     color : var(--clr-light-green) ; 
     font-weight : var(--fw-bold) ; 
 }

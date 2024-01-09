@@ -122,10 +122,10 @@ function displayCountry(countryName){
                 translations,
                 languages,
                 maps,population,
-                area,borders,gini ,
+                area,borders,gini,
                 capital,coatOfArms,
                 continents,currencies,
-                idd,
+                idd:{root},
                 landlocked,independent,
                 tld,unMember,timezones,
                 subregion,status,
@@ -189,7 +189,10 @@ function displayCountry(countryName){
                                     ${countryInfoTasform("language" , Object.values(languages))}
                                     </div>
                                     <div class="info-group">
-                                    ${countryInfoTasform("currency" , TransformCurrency(Object.values(currencies)))}
+                                            <h3 class="label">currency</h3>
+                                            <div class="info">
+                                                <h3>${currencies}</h3>
+                                            </div>
                                     </div>
                                     <div class="info-group">
                                             <h3 class="label">area</h3>
@@ -225,13 +228,19 @@ function displayCountry(countryName){
                                             </div>
                                     </div>
                                     <div class="info-group">
-                                    ${countryInfoTasform("top level domains" ,tld)}
+                                    ${countryInfoTasform("Internet top level domains" ,tld)}
                                     </div>
                                     <div class="info-group">
-                                    ${countryInfoTasform("Gini index" ,joinKeyValue(gini))}
+                                            <h3 class="label">gini</h3>
+                                            <div class="info">
+                                                <h3>${gini}</h3>
+                                            </div>
                                     </div>
                                     <div class="info-group">
-                                    ${countryInfoTasform("dialing codes" ,TransformIdd(idd))}
+                                            <h3 class="label">idd root</h3>
+                                            <div class="info">
+                                                <h3>${root}</h3>
+                                            </div>
                                     </div>
                                     <div class="info-group">
                                             <h3 class="label">status</h3>
@@ -265,35 +274,7 @@ function displayCountry(countryName){
     infoMultiValueListeners() ; 
     });
 }
-function TransformIdd(idd){
-    if(idd == undefined || idd == null ) { 
-        return idd 
-    } 
-    let Arr = [] ; 
-    let root = idd.root ; 
-    idd.suffixes.forEach((suffixe) => {
-        Arr.push(`<span class="key">${root}</span>${suffixe}`) ;
-    })
-    return Arr ; 
-}
-function TransformCurrency(currencies){
-    if(currencies == undefined || currencies == null ) { 
-        return currencies 
-    } 
-    let Arr = [] ; 
-    currencies.forEach(({name,symbol}) => {
-        Arr.push(`<span class="key">${symbol}</span> : ${name}`) ;
-    })
-    return Arr ; 
-}
-function joinKeyValue(keyvalue){
-    if(keyvalue == undefined || keyvalue == null ) { 
-        return keyvalue 
-    } 
-    let key  = Object.keys(keyvalue)
-    let value = Object.values(keyvalue);
-    return `<span class="key">${key}</span> : ${value}` ; 
-}
+
 function countryInfoTasform(label,info){
     if(typeof info === 'object'){
         if (info.length == 1) {

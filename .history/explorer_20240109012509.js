@@ -231,7 +231,7 @@ function displayCountry(countryName){
                                     ${countryInfoTasform("Gini index" ,joinKeyValue(gini))}
                                     </div>
                                     <div class="info-group">
-                                    ${countryInfoTasform("dialing codes" ,TransformIdd(idd))}
+                                    ${countryInfoTasform("International dialing codes" ,joinKeyValue(gini))}
                                     </div>
                                     <div class="info-group">
                                             <h3 class="label">status</h3>
@@ -265,24 +265,13 @@ function displayCountry(countryName){
     infoMultiValueListeners() ; 
     });
 }
-function TransformIdd(idd){
-    if(idd == undefined || idd == null ) { 
-        return idd 
-    } 
-    let Arr = [] ; 
-    let root = idd.root ; 
-    idd.suffixes.forEach((suffixe) => {
-        Arr.push(`<span class="key">${root}</span>${suffixe}`) ;
-    })
-    return Arr ; 
-}
 function TransformCurrency(currencies){
     if(currencies == undefined || currencies == null ) { 
         return currencies 
     } 
     let Arr = [] ; 
     currencies.forEach(({name,symbol}) => {
-        Arr.push(`<span class="key">${symbol}</span> : ${name}`) ;
+        Arr.push(`<span class="symbol">${symbol}</span> : ${name}`) ;
     })
     return Arr ; 
 }
@@ -292,7 +281,7 @@ function joinKeyValue(keyvalue){
     } 
     let key  = Object.keys(keyvalue)
     let value = Object.values(keyvalue);
-    return `<span class="key">${key}</span> : ${value}` ; 
+    return key+" : "+value ; 
 }
 function countryInfoTasform(label,info){
     if(typeof info === 'object'){

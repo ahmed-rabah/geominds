@@ -231,7 +231,7 @@ function displayCountry(countryName){
                                     ${countryInfoTasform("Gini index" ,joinKeyValue(gini))}
                                     </div>
                                     <div class="info-group">
-                                    ${countryInfoTasform("dialing codes" ,TransformIdd(idd))}
+                                    ${countryInfoTasform("International dialing codes" ,TransformIdd(idd))}
                                     </div>
                                     <div class="info-group">
                                             <h3 class="label">status</h3>

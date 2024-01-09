@@ -221,6 +221,10 @@ transform: scale(1.1);
     grid-area: region;
 }
 .info-group{
+    position: relative;
+    z-index: 1;
+}
+.info-group{
     padding-block: var(--size-200);
 }
 .info-group .label{

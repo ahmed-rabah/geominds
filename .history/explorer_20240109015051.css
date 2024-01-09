@@ -75,6 +75,7 @@ aside {
     overflow-y: scroll;
     scroll-snap-type:proximity ;
     transition: all .4s ease-in-out;
+    z-index: 1;
     
     /* margin-right: var(--size-400); */
 }
@@ -219,6 +220,9 @@ transform: scale(1.1);
  }
 .country-names-flag .region{
     grid-area: region;
+}
+.info-group{
+    position: relative;
 }
 .info-group{
     padding-block: var(--size-200);

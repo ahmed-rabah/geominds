@@ -101,6 +101,11 @@ body {
 ul:not(.initial),ol:not(.initial){
   list-style : none;
 }
+.initial{
+  width: fit-content;
+  width: -moz-fit-content;
+  margin: auto;
+}
 a{
   text-decoration: none;
   color: var(--clr-primary-1);
@@ -136,15 +141,7 @@ picture{
 .bg-yellow{
   background-color: var(--clr-banana-yellow);
 }
-.initial{
-  width: fit-content;
-  width: -moz-fit-content;
-  margin: auto;
-}
-.sup{
-  vertical-align: super; 
-  font-size: 12px;
-}
+
 header{
   width: 100%;
   border-bottom: 1px solid var(--clr-primary-1);

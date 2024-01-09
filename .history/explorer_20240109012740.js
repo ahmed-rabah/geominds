@@ -231,7 +231,7 @@ function displayCountry(countryName){
                                     ${countryInfoTasform("Gini index" ,joinKeyValue(gini))}
                                     </div>
                                     <div class="info-group">
-                                    ${countryInfoTasform("dialing codes" ,TransformIdd(idd))}
+                                    ${countryInfoTasform("International dialing codes" ,joinKeyValue(gini))}
                                     </div>
                                     <div class="info-group">
                                             <h3 class="label">status</h3>
@@ -264,17 +264,6 @@ function displayCountry(countryName){
     translationListListeners(translations, name.nativeName) ; 
     infoMultiValueListeners() ; 
     });
-}
-function TransformIdd(idd){
-    if(idd == undefined || idd == null ) { 
-        return idd 
-    } 
-    let Arr = [] ; 
-    let root = idd.root ; 
-    idd.suffixes.forEach((suffixe) => {
-        Arr.push(`<span class="key">${root}</span>${suffixe}`) ;
-    })
-    return Arr ; 
 }
 function TransformCurrency(currencies){
     if(currencies == undefined || currencies == null ) { 
