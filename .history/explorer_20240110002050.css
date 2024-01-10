@@ -76,7 +76,7 @@ aside {
     overflow-y: scroll;
     scroll-snap-type:proximity ;
     transition: all .4s ease-in-out;
-    z-index: 2;
+    z-index: 0;
     /* margin-right: var(--size-400); */
 }
 aside::-webkit-scrollbar {
@@ -375,7 +375,7 @@ transform: scale(1.1);
 
 .tooltip {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
   
   .tooltip .tooltiptext {

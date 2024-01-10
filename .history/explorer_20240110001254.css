@@ -76,7 +76,7 @@ aside {
     overflow-y: scroll;
     scroll-snap-type:proximity ;
     transition: all .4s ease-in-out;
-    z-index: 2;
+    
     /* margin-right: var(--size-400); */
 }
 aside::-webkit-scrollbar {
@@ -375,23 +375,21 @@ transform: scale(1.1);
 
 .tooltip {
     position: relative;
-    z-index: 1;
   }
   
   .tooltip .tooltiptext {
     visibility: hidden;
-    max-width: 100px;
+    width: 100px;
     background-color: var(--clr-primary-1);
     color: white;
     text-align: center;
-    padding: 5px;
+    padding: 5px 0;
     border-radius: 6px;
    
     position: absolute;
     bottom: 100%;
     right: 0;
     z-index: 1;
-    overflow: hidden;
   }
   
   .tooltip:hover .tooltiptext {

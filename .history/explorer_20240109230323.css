@@ -23,7 +23,6 @@
     align-items: center;
     overflow:hidden;
     gap: var(--size-300); 
-    /* overflow-x: scroll; */
     /* scroll-behavior: smooth; */
 }
 .continent-btn{
@@ -76,7 +75,7 @@ aside {
     overflow-y: scroll;
     scroll-snap-type:proximity ;
     transition: all .4s ease-in-out;
-    z-index: 2;
+    
     /* margin-right: var(--size-400); */
 }
 aside::-webkit-scrollbar {
@@ -180,15 +179,10 @@ transform: scale(1.1);
     justify-self: center;
     cursor: pointer;
 }
-.coat-armes{
-    height: 200px;
-    width: fit-content;
-    margin: auto;
-}
+
 .border-img{
     width: 50px;
     height: 50px;
-    border: 1px solid var(--clr-primary-1);
     /* transition: transform 0.4s linear; */
 }
 /* .border-img:hover{
@@ -260,11 +254,7 @@ transform: scale(1.1);
 
 .translations-caroussel{
     display: grid;
-    grid-template-columns: auto auto;
-    align-content: center;
-    justify-content: center;
-    /*
-    grid-template-columns:minmax(130px,170px) minmax(100px, 1fr); */
+    grid-template-columns:minmax(130px,170px) minmax(100px, 1fr);
     /* justify-content: center; */
     /* align-items: center; */
     /* padding: 0; */
@@ -295,8 +285,7 @@ transform: scale(1.1);
     /* line-height: 90%; */
     /* width: 10vw; */
 }
-.translations-list::-webkit-scrollbar,
-.continents-list::-webkit-scrollbar {
+.translations-list::-webkit-scrollbar {
     display: none;
 }
 .translation-item{
@@ -355,7 +344,6 @@ transform: scale(1.1);
 .more-info{
     display: grid;
    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-   /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
    
    /* align-self: center; */
    width: 100%;
@@ -364,39 +352,6 @@ transform: scale(1.1);
     color : var(--clr-light-green) ; 
     font-weight : var(--fw-bold) ; 
 }
-.borders-info{
-    display: flex;
-    justify-content: center ; 
-    gap: var(--size-400) ; 
-    padding: var(--size-300);
-    flex-wrap: wrap;
-
-}
-
-.tooltip {
-    position: relative;
-    z-index: 1;
-  }
-  
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    max-width: 100px;
-    background-color: var(--clr-primary-1);
-    color: white;
-    text-align: center;
-    padding: 5px;
-    border-radius: 6px;
-   
-    position: absolute;
-    bottom: 100%;
-    right: 0;
-    z-index: 1;
-    overflow: hidden;
-  }
-  
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-  }
 @media screen and (min-width: 768px) {
     /* main{
     min-height: 70vh;
@@ -486,7 +441,7 @@ transform: scale(1.1);
             'flag names'
             'flag region';
     }
-    .country-names .info-group{
+    .country-names .info-group,.border-img{
         display: flex;
         /* justify-content: space-between ;  */
         column-gap: var(--size-400) ; 

@@ -250,12 +250,14 @@ function displayCountry(countryName){
                                         <div class="info-group">
                                                 <h3 class="label">coat of armes</h3>
                                                 <div class="info">
-                                                    <img src="${coatOfArms.png}" class="coat-armes" >
+                                                    <img src="${coatOfArms.png}" >
                                                 </div>
                                         </div>
                                         <div class="info-group">
                                                 <h3 class="label">borders</h3>
+                                                <div class="info">   
                                                 ${ bordersTransform(countries , borders) }  
+                                                </div>
                                         </div>
                                     </div>
     `; 
@@ -264,39 +266,13 @@ function displayCountry(countryName){
     });
 }
 function bordersTransform(countries,bordersCodes=[]){
-let borders = countries.filter(country=>{
-                                         if(bordersCodes.includes(country.cca3)) return true;
-                                         if(bordersCodes.includes(country.cca2)) return true;
-                                         if(bordersCodes.includes(country.ccn3)) return true;
-                                         if(bordersCodes.includes(country.cioc)) return true; 
-                                         return false ; 
+let borders = countries.filter(country=>{bordersCodes.includes(country.cca3) ||
+                                         bordersCodes.includes(country.cca2) ||
+                                         bordersCodes.includes(country.ccn3) ||
+                                         bordersCodes.includes(country.cioc) 
                                         })
-let html = `` ; 
-    switch (borders.length) {
-        case 0:
-             html += `<div class="info"> 
-                            <h3>has no borders</h3>
-                      </div>` ; 
-            break;
-        case 1:
-            html += `<div class="info initial"> 
-                        <div class="tooltip">
-                        <img src="${borders[0].flags.svg}" alt="${borders[0].name.common}" class="country-icon-img border-img" data-country-name="${borders[0].name.common}" />
-                        <h3 class="tooltiptext">${borders[0].name.official}</h3>
-                        </div>
-                    </div>` ; 
-            break;
+
     
-        default:
-                html += `<div class="info initial borders-info"> ` ; 
-                borders.forEach(neighbor=> html+=`<div class="tooltip">
-                                                    <img src="${neighbor.flags.svg}" alt="${neighbor.name.common}" class="country-icon-img border-img" data-country-name="${neighbor.name.common}" />  
-                                                    <h3 class="tooltiptext">${neighbor.name.common}</h3>
-                                                 </div> `  ) ; 
-                html+=`</div>` ; 
-            break;
-    }
-    return html;
 }
 
 function TransformIdd(idd){

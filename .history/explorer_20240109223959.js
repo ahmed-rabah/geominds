@@ -250,7 +250,7 @@ function displayCountry(countryName){
                                         <div class="info-group">
                                                 <h3 class="label">coat of armes</h3>
                                                 <div class="info">
-                                                    <img src="${coatOfArms.png}" class="coat-armes" >
+                                                    <img src="${coatOfArms.png}" >
                                                 </div>
                                         </div>
                                         <div class="info-group">
@@ -279,21 +279,12 @@ let html = `` ;
                       </div>` ; 
             break;
         case 1:
-            html += `<div class="info initial"> 
-                        <div class="tooltip">
-                        <img src="${borders[0].flags.svg}" alt="${borders[0].name.common}" class="country-icon-img border-img" data-country-name="${borders[0].name.common}" />
-                        <h3 class="tooltiptext">${borders[0].name.official}</h3>
-                        </div>
+            html += `<div class="info"> 
+                        <img src="${borders[0].flags.svg}" alt="${borders[0].name.common}" class="country-icon-img" data-country-name="${borders[0].name.common}" />
                     </div>` ; 
             break;
     
         default:
-                html += `<div class="info initial borders-info"> ` ; 
-                borders.forEach(neighbor=> html+=`<div class="tooltip">
-                                                    <img src="${neighbor.flags.svg}" alt="${neighbor.name.common}" class="country-icon-img border-img" data-country-name="${neighbor.name.common}" />  
-                                                    <h3 class="tooltiptext">${neighbor.name.common}</h3>
-                                                 </div> `  ) ; 
-                html+=`</div>` ; 
             break;
     }
     return html;

@@ -280,19 +280,13 @@ let html = `` ;
             break;
         case 1:
             html += `<div class="info initial"> 
-                        <div class="tooltip">
                         <img src="${borders[0].flags.svg}" alt="${borders[0].name.common}" class="country-icon-img border-img" data-country-name="${borders[0].name.common}" />
-                        <h3 class="tooltiptext">${borders[0].name.official}</h3>
-                        </div>
                     </div>` ; 
             break;
     
         default:
                 html += `<div class="info initial borders-info"> ` ; 
-                borders.forEach(neighbor=> html+=`<div class="tooltip">
-                                                    <img src="${neighbor.flags.svg}" alt="${neighbor.name.common}" class="country-icon-img border-img" data-country-name="${neighbor.name.common}" />  
-                                                    <h3 class="tooltiptext">${neighbor.name.common}</h3>
-                                                 </div> `  ) ; 
+                borders.forEach(neighbor=> html+=`<img src="${neighbor.flags.svg}" alt="${neighbor.name.common}" class="country-icon-img border-img" data-country-name="${neighbor.name.common}" /> ` ) ; 
                 html+=`</div>` ; 
             break;
     }

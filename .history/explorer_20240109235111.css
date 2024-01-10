@@ -76,7 +76,7 @@ aside {
     overflow-y: scroll;
     scroll-snap-type:proximity ;
     transition: all .4s ease-in-out;
-    z-index: 2;
+    
     /* margin-right: var(--size-400); */
 }
 aside::-webkit-scrollbar {
@@ -259,11 +259,10 @@ transform: scale(1.1);
 }
 
 .translations-caroussel{
-    display: grid;
     grid-template-columns: auto auto;
     align-content: center;
     justify-content: center;
-    /*
+    /* display: grid;
     grid-template-columns:minmax(130px,170px) minmax(100px, 1fr); */
     /* justify-content: center; */
     /* align-items: center; */
@@ -372,31 +371,6 @@ transform: scale(1.1);
     flex-wrap: wrap;
 
 }
-
-.tooltip {
-    position: relative;
-    z-index: 1;
-  }
-  
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    max-width: 100px;
-    background-color: var(--clr-primary-1);
-    color: white;
-    text-align: center;
-    padding: 5px;
-    border-radius: 6px;
-   
-    position: absolute;
-    bottom: 100%;
-    right: 0;
-    z-index: 1;
-    overflow: hidden;
-  }
-  
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-  }
 @media screen and (min-width: 768px) {
     /* main{
     min-height: 70vh;
@@ -434,9 +408,9 @@ transform: scale(1.1);
         column-gap: var(--size-400);
         padding-right: var(--size-300);
     }
-    .translations-caroussel{
+    /* .translations-caroussel{
         justify-content:left;
-    }
+    } */
     /* .region,.location{
         flex-direction: row;
     } */

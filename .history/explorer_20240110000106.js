@@ -291,7 +291,7 @@ let html = `` ;
                 html += `<div class="info initial borders-info"> ` ; 
                 borders.forEach(neighbor=> html+=`<div class="tooltip">
                                                     <img src="${neighbor.flags.svg}" alt="${neighbor.name.common}" class="country-icon-img border-img" data-country-name="${neighbor.name.common}" />  
-                                                    <h3 class="tooltiptext">${neighbor.name.common}</h3>
+                                                    <h3 class="tooltiptext">${neighbor.name.official}</h3>
                                                  </div> `  ) ; 
                 html+=`</div>` ; 
             break;
