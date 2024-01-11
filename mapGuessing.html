@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./node_modules/leaflet/dist/leaflet.css">
+    <script src="./node_modules/leaflet/dist/leaflet.js"></script>
+    <style>
+        #mapid{
+            height:400px ; 
+            width: 600px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    ok
+    <div id="mapid"></div>
+        <script>
+      const mapid = L.map('mapid').setView([0,0],4) ; 
+      const tileUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png' ; 
+      L.tileLayer(tileUrl, {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(mapid);
+        const marker  = L.marker([-10.5,105.66666666])
+        marker.addTo(mapid);
+        mapid.setView([-10.5,105.66666666])
+     </script>
+</body>
+</html>

@@ -1,8 +1,15 @@
+//leaflet Library
+import "./node_modules/leaflet/dist/leaflet.css" ; 
+import "./node_modules/leaflet/dist/leaflet.js" ; 
+
+// css file
 import './explorer.css'
 // import {countriesSearchList , getCountries , setCountriesListeners} from './components/sideCountriesList.js';
-import languageInfo from './components/languageCodeName.js';
+//utilities functions 
+import languageInfo,{countryGeoJSON } from './components/utilities.js';
 
 let continentsList = document.querySelector('.continents-list') ; 
+let continentsBtns = document.querySelectorAll('.continent-btn ') ; 
 let CtnArrow = document.querySelectorAll('.horizontal-arrow'); 
 let leftArrow = document.querySelector('.arrow-left');
 let rightArrow = document.querySelector('.arrow-right');
@@ -10,21 +17,52 @@ let controlIcons = document.querySelector('.control-icons');
 let searchIcon = document.querySelector('.icon-search');  
 let closeSearchIcon = document.querySelector('.icon-close-search');  
 let aside = document.querySelector('aside'); 
+let contriesList = document.querySelector('.contries-list')
 let footer = document.querySelector('footer'); 
 let section = document.querySelector('section'); 
 let Allcountries =  getCountries();
-
+let countriesInput = document.querySelector('.countries-input') ; 
 //listeners
 window.addEventListener('DOMContentLoaded',()=>{
     let list = countriesSearchList(Allcountries) ;     
     list.then(countriesSearchItems => {
-        aside.insertAdjacentHTML('beforeend',countriesSearchItems) ; 
+        contriesList.innerHTML = countriesSearchItems ; 
         setCountriesListeners() ; 
     })
     // console.log(countries);
 })
 
+continentsBtns.forEach(btn=>{
+
+    btn.addEventListener("click",()=>{
+        let continent  =  btn.dataset.selectedContinent;
+        let filteredCOuntries = continent =="" ? Allcountries : Allcountries.then(countries=>
+                            countries.filter(country=>country.continents.includes(continent))) ; 
+        let input  = countriesInput.value ;  
+        if(input != ""){
+            filteredCOuntries = filteredCOuntries.then(countries=>
+                countries.filter(country=>country.cca3.toLowerCase().includes(input.toLowerCase()) 
+                || country.name.common.toLowerCase().includes(input.toLowerCase())
+                ||country.name.official.toLowerCase().includes(input.toLowerCase()))) ; 
+        }
+        let list = countriesSearchList(filteredCOuntries) ;     
+        list.then(countriesSearchItems => {
+            contriesList.innerHTML = countriesSearchItems ; 
+            setCountriesListeners() ; 
+        })
+        continentsBtns.forEach(btnReset=>{ 
+            btnReset.classList.remove('selected') 
+              if (btnReset.dataset.selectedContinent == continent) {
+                console.log(btnReset.dataset.selectedContinent);
+                console.log(continent);
+                btnReset.classList.add('selected') 
+               };
+        })
+        
+    })
+})
 window.addEventListener('scroll',()=>{
+
     if(window.pageYOffset >=  66){
         aside.style.top=  "70px";
     }else{
@@ -43,7 +81,20 @@ window.addEventListener('scroll',()=>{
     //  }
 
 })
+countriesInput.addEventListener('keyup', ()=>{
+    let input  =  countriesInput.value;
+    let selectedContinent = document.querySelector('.continent-btn.selected').dataset.selectedContinent ; 
 
+    let filteredCOuntries = Allcountries.then(countries=>
+                        countries.filter(country=>(country.continents.includes(selectedContinent) ) && country.cca3.toLowerCase().includes(input.toLowerCase()) 
+                        || country.name.common.toLowerCase().includes(input.toLowerCase())
+                        ||country.name.official.toLowerCase().includes(input.toLowerCase()))) ; 
+    let list = countriesSearchList(filteredCOuntries) ;     
+    list.then(countriesSearchItems => {
+        contriesList.innerHTML = countriesSearchItems ; 
+        setCountriesListeners() ; 
+    })
+})
 controlIcons.addEventListener('click',()=>{
     aside.classList.toggle('closed-aside') ;
     closeSearchIcon.classList.toggle('hide') ; 
@@ -89,7 +140,8 @@ async function getCountries(){
 }
 
 function countriesSearchList(list){
-   return list.then((countries) => {console.log(countries[100]);
+   return list.then((countries) => {
+    // console.log(countries[100]);
     let htmlSearchList = `` ; 
         countries.forEach(({name,flags}) => {
             htmlSearchList += `
@@ -121,8 +173,9 @@ function displayCountry(countryName){
         let {   name,flags,
                 translations,
                 languages,
-                maps,population,
-                area,borders,gini ,
+                maps,latlng,capitalInfo,
+                population,area,
+                borders,gini ,
                 capital,coatOfArms = "has no coat of armes",
                 continents,currencies,
                 idd,
@@ -132,7 +185,9 @@ function displayCountry(countryName){
                 startOfWeek,region,
                 responseFulfiled = true
             } = countries.filter(country => country.name.common  === countryName)[0] ?? {name: countryName , responseFulfiled : false} ; 
-             
+             let currenciesValues  =  currencies ? Object.values(currencies)  : null ; 
+             let languagesValues  =  languages ? Object.values(languages)  : null ; 
+
             // translationLanguagesList(translations,name.nativeName);
             section.classList.add("justify-start");
             section.innerHTML = `<div class="country-names-flag">
@@ -186,10 +241,10 @@ function displayCountry(countryName){
                                             </div>
                                     </div> 
                                     <div class="info-group">
-                                    ${countryInfoTasform("language" , Object.values(languages))}
+                                    ${countryInfoTasform("language" , languagesValues )}
                                     </div>
                                     <div class="info-group">
-                                    ${countryInfoTasform("currency" , TransformCurrency(Object.values(currencies)))}
+                                    ${countryInfoTasform("currency" , TransformCurrency(currenciesValues))}
                                     </div>
                                     <div class="info-group">
                                             <h3 class="label">area</h3>
@@ -244,13 +299,15 @@ function displayCountry(countryName){
                                         <div class="info-group">
                                                 <h3 class="label">maps</h3>
                                                 <div class="info">
-                                                    <h3>${maps}</h3>
+                                                    <a href="${maps.googleMaps}" class="map-link" target="_blank">open in google maps <img src="./images/link.png"  alt="link picture"></a>
+                                                    <a href="${maps.openStreetMaps}" class="map-link" target="_blank">open in openStreetMaps <img src="./images/link.png"  alt="link picture"></a>
+                                                    <div id="mapid"></div>
                                                 </div>
                                         </div>
                                         <div class="info-group">
                                                 <h3 class="label">coat of armes</h3>
                                                 <div class="info">
-                                                    <img src="${coatOfArms.png}" class="coat-armes" >
+                                                ${coatArms(coatOfArms)}
                                                 </div>
                                         </div>
                                         <div class="info-group">
@@ -259,9 +316,34 @@ function displayCountry(countryName){
                                         </div>
                                     </div>
     `; 
+    applyCountryGeoJSON(name.common,latlng)
     translationListListeners(translations, name.nativeName) ; 
     infoMultiValueListeners() ; 
     });
+}
+
+function applyCountryGeoJSON(country,latlng){
+    const mapid = L.map('mapid').setView(latlng,3) ; 
+    const tileUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png' ; 
+    const marker  = L.marker(latlng)
+    L.tileLayer(tileUrl, {
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(mapid);
+      marker.addTo(mapid);
+    let geoJSON = countryGeoJSON(country)
+    if(geoJSON != undefined){
+        L.geoJSON(geoJSON, {
+            style:{color: "var(--clr-primary-1)"} 
+        }).addTo(mapid);
+    }
+
+}
+
+function coatArms(coat){
+    if(coat.png){
+        return `<img src="${coat.png}" class="coat-armes" > `
+    }
+        return `<h3>has no coat of armes</h3>` ; 
 }
 function bordersTransform(countries,bordersCodes=[]){
 let borders = countries.filter(country=>{
@@ -300,14 +382,18 @@ let html = `` ;
 }
 
 function TransformIdd(idd){
-    if(idd == undefined || idd == null ) { 
-        return idd 
+    if(idd == undefined || idd == null  || !idd.root) { 
+        return null 
     } 
     let Arr = [] ; 
     let root = idd.root ; 
-    idd.suffixes.forEach((suffixe) => {
-        Arr.push(`<span class="key">${root}</span>${suffixe}`) ;
-    })
+    if(idd.suffixes){ 
+        Arr.push(`<span class="key">${root}</span>`) ;
+    } else{     
+        idd.suffixes.forEach((suffixe) => {
+            Arr.push(`<span class="key">${root}</span>${suffixe}`) ;
+        })
+    }
     return Arr ; 
 }
 function TransformCurrency(currencies){
@@ -329,7 +415,13 @@ function joinKeyValue(keyvalue){
     return `<span class="key">${key}</span> : ${value}` ; 
 }
 function countryInfoTasform(label,info){
-    if(typeof info === 'object'){
+    if(!info){
+        return `
+        <h3 class="label">${label}</h3>
+        <div class="info">
+        <h3>has no ${label}</h3>
+        </div>` ;  
+    }else if(typeof info === 'object'){
         if (info.length == 1) {
             return `
             <h3 class="label">${label}</h3>
@@ -362,13 +454,7 @@ function countryInfoTasform(label,info){
             })
             content += `</ul>` ; 
             return content ; 
-        }else if(!info){
-            return `
-            <h3 class="label">${label}</h3>
-            <div class="info">
-            <h3>has no ${label}</h3>
-            </div>` ;  
-        }else{
+        } else{
             return `
             <h3 class="label">${label}</h3>
             <div class="info">

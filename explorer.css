@@ -1,3 +1,6 @@
+#mapid{
+    height: 250px;
+}
 .continents-caroussel{
     display: flex;
     position: relative;
@@ -76,7 +79,7 @@ aside {
     overflow-y: scroll;
     scroll-snap-type:proximity ;
     transition: all .4s ease-in-out;
-    z-index: 2;
+    z-index: 2000;
     /* margin-right: var(--size-400); */
 }
 aside::-webkit-scrollbar {
@@ -181,7 +184,7 @@ transform: scale(1.1);
     cursor: pointer;
 }
 .coat-armes{
-    height: 200px;
+    height: 300px;
     width: fit-content;
     margin: auto;
 }
@@ -396,6 +399,14 @@ transform: scale(1.1);
   
   .tooltip:hover .tooltiptext {
     visibility: visible;
+  }
+  .map-link{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    gap: var(--size-200);
+    text-decoration: underline;
+    color: var(--clr-primary-1);
   }
 @media screen and (min-width: 768px) {
     /* main{
