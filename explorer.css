@@ -80,7 +80,7 @@ aside {
     scroll-snap-type:proximity ;
     transition: all .4s ease-in-out;
     z-index: 2000;
-    /* margin-right: var(--size-400); */
+    margin-right: var(--size-600);
 }
 aside::-webkit-scrollbar {
     width: var(--size-300);
@@ -407,6 +407,21 @@ transform: scale(1.1);
     gap: var(--size-200);
     text-decoration: underline;
     color: var(--clr-primary-1);
+  }
+  .warning img{
+    width: 50px;
+    margin: auto;
+    padding: var(--size-100);
+    margin-block: var(--size-300);
+  }
+  .warning h4{
+    color: var(--clr-primary-1);
+    padding: var(--size-400) var(--size-200);
+    background: #ffcc00  ; 
+    border-radius: var(--size-200);
+    margin: var(--size-200);
+    /* font-weight: var(--fw-regular); */
+    font-family: var(--ff-body);
   }
 @media screen and (min-width: 768px) {
     /* main{

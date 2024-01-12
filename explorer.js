@@ -9,6 +9,7 @@ import './explorer.css'
 import languageInfo,{countryGeoJSON } from './components/utilities.js';
 
 let continentsList = document.querySelector('.continents-list') ; 
+let continentsCaroussel = document.querySelector('.continents-caroussel') ; 
 let continentsBtns = document.querySelectorAll('.continent-btn ') ; 
 let CtnArrow = document.querySelectorAll('.horizontal-arrow'); 
 let leftArrow = document.querySelector('.arrow-left');
@@ -47,6 +48,14 @@ continentsBtns.forEach(btn=>{
         }
         let list = countriesSearchList(filteredCOuntries) ;     
         list.then(countriesSearchItems => {
+            if(countriesSearchItems == ""){
+                contriesList.innerHTML = `  <div class="warning">
+                                                <img src="./images/dead.svg" alt="not found" />
+                                                <h4>your search did not match any results</h4>
+                                            </div>
+                                        ` ; 
+                return ; 
+            }
             contriesList.innerHTML = countriesSearchItems ; 
             setCountriesListeners() ; 
         })
@@ -60,6 +69,37 @@ continentsBtns.forEach(btn=>{
         })
         
     })
+})
+countriesInput.addEventListener('keyup', ()=>{
+    let input  =  countriesInput.value;
+    let selectedContinent = document.querySelector('.continent-btn.selected').dataset.selectedContinent ; 
+    
+    let filteredCOuntries = Allcountries.then(countries=>
+                        countries.filter(country=>(selectedContinent == "" || country.continents.includes(selectedContinent) ) && country.cca3.toLowerCase().includes(input.toLowerCase()) 
+                        || country.name.common.toLowerCase().includes(input.toLowerCase())
+                        ||country.name.official.toLowerCase().includes(input.toLowerCase()))) ; 
+
+    let list = countriesSearchList(filteredCOuntries) ;     
+    list.then(countriesSearchItems => {
+        if(countriesSearchItems == ""){
+            contriesList.innerHTML = `  <div class="warning">
+                                            <img src="./images/dead.svg" alt="not found" />
+                                            <h4>your search did not match any results</h4>
+                                        </div>
+                                    ` ; 
+            return ; 
+        }
+        contriesList.innerHTML = countriesSearchItems ; 
+        setCountriesListeners() ; 
+    })
+})
+
+document.addEventListener('click',(event)=>{
+    if(!aside.contains(event.target) && !aside.classList.contains('closed-aside') && !continentsCaroussel.contains(event.target)){
+        aside.classList.add('closed-aside') ;
+        closeSearchIcon.classList.add('hide') ; 
+        searchIcon.classList.remove('hide') ;
+    }
 })
 window.addEventListener('scroll',()=>{
 
@@ -81,24 +121,11 @@ window.addEventListener('scroll',()=>{
     //  }
 
 })
-countriesInput.addEventListener('keyup', ()=>{
-    let input  =  countriesInput.value;
-    let selectedContinent = document.querySelector('.continent-btn.selected').dataset.selectedContinent ; 
-
-    let filteredCOuntries = Allcountries.then(countries=>
-                        countries.filter(country=>(country.continents.includes(selectedContinent) ) && country.cca3.toLowerCase().includes(input.toLowerCase()) 
-                        || country.name.common.toLowerCase().includes(input.toLowerCase())
-                        ||country.name.official.toLowerCase().includes(input.toLowerCase()))) ; 
-    let list = countriesSearchList(filteredCOuntries) ;     
-    list.then(countriesSearchItems => {
-        contriesList.innerHTML = countriesSearchItems ; 
-        setCountriesListeners() ; 
-    })
-})
 controlIcons.addEventListener('click',()=>{
     aside.classList.toggle('closed-aside') ;
     closeSearchIcon.classList.toggle('hide') ; 
     searchIcon.classList.toggle('hide') ; 
+    countriesInput.focus() ; 
 })
 CtnArrow.forEach(arrow=>arrow.addEventListener('click',()=>slideContinents(continentsList,arrow.dataset.arrowDirection)));
 
@@ -163,7 +190,8 @@ function setCountriesListeners(){
 
             displayCountry(country.dataset.countryName) ; 
             // infoMultiValueListeners() ;           
-
+            countries.forEach(country=>country.classList.remove('selected'))
+            country.classList.add('selected')
         })
     })
 }
@@ -387,7 +415,7 @@ function TransformIdd(idd){
     } 
     let Arr = [] ; 
     let root = idd.root ; 
-    if(idd.suffixes){ 
+    if(!idd.suffixes){ 
         Arr.push(`<span class="key">${root}</span>`) ;
     } else{     
         idd.suffixes.forEach((suffixe) => {
