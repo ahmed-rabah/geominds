@@ -1,31 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./node_modules/leaflet/dist/leaflet.css">
-    <script src="./node_modules/leaflet/dist/leaflet.js"></script>
-    <style>
-        #mapid{
-            height:400px ; 
-            width: 600px;
-        }
-    </style>
-    <title>Document</title>
-</head>
-<body>
-    ok
-    <div id="mapid"></div>
-        <script>
-      const mapid = L.map('mapid').setView([0,0],4) ; 
-      const tileUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png' ; 
-      L.tileLayer(tileUrl, {
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(mapid);
-        const marker  = L.marker([-10.5,105.66666666])
-        marker.addTo(mapid);
-        mapid.setView([-10.5,105.66666666])
-     </script>
-</body>
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./images/icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeoMinds</title>
+  </head>
+  <body>
+
+    <main>
+          <section class="container">
+              <h1 class="heading">guess <span>the</span> location <span>Game</span></h1>
+              <img src="./images/map-game.svg" alt="quiz starting" class="image">
+          <div class="rules-container">
+            <div class="rule">
+                <img src="./images/3heart.png" alt="3 hearts">
+                <p>With <span>three hearts</span> at the start, Lose all hearts, and you're out in this guessing game.</p>
+            </div>
+            <div class="rule">
+                <img src="./images/chronometer.png" alt="question icon">
+                <p>Fail to  find the location within the <span>20-second time limit</span>, and you'll <span>lose a heart</span>.</p>
+            </div>
+            <div class="rule">
+                <img src="./images/reward.png" alt="reward icon">
+                <p>The faster your guess, the higher your point score in this guessing game.</p>
+            </div>
+            <p class="quiz-start-btn">start guessing</p>
+            </div>
+        </section>
+    </main>
+
+  <script src="./components/header.js"></script>
+  <script src="./components/footer.js"></script>
+  <script type="module" src="/main.js"></script>
+  <script type="module" src="/quiz.js"></script>
+  </body>
+  </html>

@@ -17,13 +17,13 @@ document.body.insertAdjacentHTML('afterbegin',`<header>
           <a href="./mapExplorer.html" class="nav-link">map Explorer</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">geo quiz</a>
+          <a href="./geoQuiz.html" class="nav-link">geo quiz</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">map guess</a>
+          <a href="./mapGuessing.html" class="nav-link">map guess</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">contact us</a>
+          <a href="./contact.html" class="nav-link">contact us</a>
         </li>
         <li class="nav-item">
           <a href="https://www.buymeacoffee.com/ahmedrabah" target="_blank" title="support us by buying us a Basketball" class="support-button bg-yellow">

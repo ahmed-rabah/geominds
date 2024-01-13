@@ -1,0 +1,121 @@
+:root{
+    font-family: var(--ff-primary);
+}
+section{
+    display: grid;
+    min-height: 85vh;
+    grid-template-areas: "heading" "image" "rules";
+    /* grid-template-rows: 1fr; */
+    justify-items: center;
+    gap: var(--size-100);
+    padding: var(--size-400) var(--size-300);
+}
+
+.image{
+    grid-area: image;
+  width: 100%;
+  margin: 0;
+}
+.heading{
+  grid-area: heading;
+}
+.rules-container{
+  grid-area: rules;
+}
+.rule{
+    display: flex;
+    justify-content: flex-start ; 
+    align-items: center ; 
+    gap: var(--size-200);
+    margin-block: var(--size-300);
+}
+.rule p{
+    color: black;
+    line-height: 120%; /* 16.8px */
+    letter-spacing: 0.7px;
+    text-transform: capitalize;
+}
+.rule p span{
+    font-weight: var(--fw-semi-bold);
+    color: var(--clr-primary-2);
+}
+.rule img{
+    width : 30px ; 
+    height: 30px;
+}
+.quiz-start-btn{
+    width: 100%;
+    padding: var(--size-400) var(--size-100) ; 
+    border-radius: var(--size-100);
+    background: var(--clr-primary-2);
+    color: white ; 
+    text-align: center;
+    cursor: pointer;
+    /* logoText */
+    font-family: var(--ff-secondary);
+    font-size: var(--fs-24);
+    font-style: normal;
+    font-weight: 700;
+    line-height: 90%; /* 28.8px */
+    text-transform: uppercase;
+} 
+  @media screen and (min-width: 768px) {
+    section{
+      padding: var(--size-600) 8rem;
+    }
+
+   
+  }
+  
+  @media screen and (min-width: 900px) {
+  
+      /* generic style in main.css */
+  }
+  
+  @media screen and (min-width: 1100px) {
+
+    section {
+      grid-template-columns:  1.2fr 1fr;
+      grid-template-areas: 'image heading' 'image rules'  ;      /* row-gap: var(--size-300);     */
+      gap: 0;
+      align-items: center;
+      align-content : center ; 
+      padding: var(--size-400);
+    }
+    .rule p {
+        font-size: var(--fs-18);
+    }
+    .heading{
+        text-align: center ; 
+    }
+    .rules-container  {
+    align-self: baseline;
+    }
+
+  }
+  
+  @media screen and (min-width: 1360px) {
+
+     section {
+      padding: 0 var(--size-1000);
+    } 
+  
+  }
+  @media screen and (min-width: 1920px) {
+    .heading{
+        font-size: var(--fs-heading-0);
+      }
+    .rule img {
+      width: 70px;
+      height: 70px;
+    } 
+    .rule p{
+        font-size: var(--fs-24);
+    }  
+    .quiz-start-btn{
+        font-size: var(--fs-32);
+        padding-block: var(--size-600);
+    }
+  }
+
+  

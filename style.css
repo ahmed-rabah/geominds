@@ -123,8 +123,12 @@ section img {
 }
 
 @media screen and (min-width: 1360px) {
- 
-
+  .top{
+    top: 60px;
+  }
+  .heading{
+    font-size: var(--fs-heading-0);
+  }
   section img{
     height: 80%;
   }  
@@ -133,7 +137,22 @@ section img {
   } 
 
 }
+@media screen and (min-width: 1920px) {
+  .top{
+    top: 80px;
+  }
+  section {
+    grid-template-columns: 1fr 2fr;
+  }
 
+  .section-desc{
+    /* background-color: #176B87; */
+    font-size: var(--fs-18);
+    padding-top :  var(--size-400) ; 
+    align-self: baseline;
+  }
+ 
+}
 @media(prefers-reduced-motion: reduce) {
   .animation{
     transition: none;

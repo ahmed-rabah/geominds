@@ -18,7 +18,7 @@ let controlIcons = document.querySelector('.control-icons');
 let searchIcon = document.querySelector('.icon-search');  
 let closeSearchIcon = document.querySelector('.icon-close-search');  
 let aside = document.querySelector('aside'); 
-let contriesList = document.querySelector('.contries-list')
+let contriesList = document.querySelector('.countries-list')
 let footer = document.querySelector('footer'); 
 let section = document.querySelector('section'); 
 let Allcountries =  getCountries();
@@ -101,6 +101,7 @@ document.addEventListener('click',(event)=>{
         searchIcon.classList.remove('hide') ;
     }
 })
+
 window.addEventListener('scroll',()=>{
 
     if(window.pageYOffset >=  66){
@@ -159,6 +160,15 @@ async function getCountries(){
     try {
         let response = await fetch('https://restcountries.com/v3.1/all')
         let data= await response.json() ; 
+        data.sort(function(a,b){
+            if(a.population > b.population){
+                return -1
+            }else if(a.population < b.population){
+                return 1
+            }else{
+                return 0 ; 
+            }
+        })
         return data ; 
     } catch (error) {
         console.error(error) ;

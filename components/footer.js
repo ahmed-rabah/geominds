@@ -20,13 +20,13 @@ firstScript.insertAdjacentHTML('beforebegin',`    <footer>
         <a href="./mapExplorer.html" class="footer-nav-link">map Explorer</a>
       </li>
       <li class="footer-nav-item">
-        <a href="#" class="footer-nav-link">geo quiz</a>
+        <a href="./geoQuiz.html" class="footer-nav-link">geo quiz</a>
       </li>
       <li class="footer-nav-item">
-        <a href="#" class="footer-nav-link">map guess</a>
+        <a href="./mapGuessing.html" class="footer-nav-link">map guess</a>
       </li>
       <li class="footer-nav-item">
-        <a href="#" class="footer-nav-link">contact us</a>
+        <a href="./contact.html" class="footer-nav-link">contact us</a>
       </li>
   </ul>
  
