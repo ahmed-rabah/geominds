@@ -1,16 +1,18 @@
 :root{
     font-family: var(--ff-primary);
 }
-section{
+section.container,
+.quiz-container{
     display: grid;
     min-height: 85vh;
-    grid-template-areas: "heading" "image" "rules";
     /* grid-template-rows: 1fr; */
     justify-items: center;
     gap: var(--size-100);
     padding: var(--size-400) var(--size-300);
 }
-
+section.container{
+  grid-template-areas: "heading" "image" "rules";
+}
 .image{
     grid-area: image;
   width: 100%;
@@ -59,22 +61,130 @@ section{
     line-height: 90%; /* 28.8px */
     text-transform: uppercase;
 } 
+.quiz-container{
+  background-color: var(--clr-light-white ,#D6E6F2);
+  margin: 0;
+  padding: var(--size-500) var(--size-200);
+}
+.quiz-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap:0  ; 
+  width: 100%;
+}
+.lifes{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--size-200);
+}
+.question{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--size-200);
+  flex-flow: column wrap;
+  background-color: var(--clr-primary-1);
+  /* padding-block: var(--size-600); */
+  width: 100%;
+  border-radius:  var(--size-300); 
+}
+.question h3{
+  font-size: var(--fs-18);
+  font-weight: var(--fw-semi-bold);
+  /* line-height: 170%;  */
+  letter-spacing: 1.2px;
+  text-transform: capitalize;
+  color: white;
+  text-align: center;
+}
+.question img{
+  max-width: 150px;
+  max-height: 70px;
+  border: 1px solid var(--clr-light-white);
+}
+.options{
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: 1fr;
+  gap: var(--size-200);
+  width: 100%;
+}
+.option{
+  color: var(--clr-primary-1, #04364A);
+  background: white;
+  padding-block: var(--size-200);
+  /* line-height: 170%; */
+  font-weight: var(--fw-semi-bold);
+  text-align: center;
+  border-radius: var(--size-200);
+  text-transform: capitalize;
+  border: 1px solid var(--clr-seconday-1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.option:hover{
+  background: var(--clr-secondary-1);
+  /* color: white; */
+}
+/* #timer{
+  position : relative;
+  width: 100px;
+} 
+#timer svg {
+  rotate: 270deg;
+}
+#timer svg circle:first-child{
+  stroke : var(--clr-primary-1);  
+  fill :"transparent"   ;  
+}
+#timer p{
+  position:absolute;
+  top: 50% ;
+  transform : translate(-50% , -50%) ;
+  font-size : 14px ; 
+  text-align : center  ; 
+}
+*/
   @media screen and (min-width: 768px) {
-    section{
+    section.container{
       padding: var(--size-600) 8rem;
     }
+    .quiz-container{
+      padding: var(--size-800) var(--size-400);
+    }
+    .question{
+      gap: var(--size-500);
+      flex-flow: wrap;
+      padding-block: 0;
+    }
+    .options{
+      height: fit-content;
+      margin-top: var(--size-400);
+      grid-template-columns: 1fr 1fr;
+      row-gap: var(--size-500);
 
+    }
+    .option{
+      padding-block: var(--size-500);
+      font-size: var(--fs-18);
+    }
    
   }
   
   @media screen and (min-width: 900px) {
   
+    .question h3{
+      font-size: var(--fs-24);
+    }
       /* generic style in main.css */
   }
   
   @media screen and (min-width: 1100px) {
 
-    section {
+    section.container {
       grid-template-columns:  1.2fr 1fr;
       grid-template-areas: 'image heading' 'image rules'  ;      /* row-gap: var(--size-300);     */
       gap: 0;
@@ -91,14 +201,23 @@ section{
     .rules-container  {
     align-self: baseline;
     }
-
+    .image{
+      height: 90%;
+      
+    }
+    .quiz-container{
+      padding-inline:  var(--size-800);
+    }
   }
   
   @media screen and (min-width: 1360px) {
 
-     section {
+     section.container{
       padding: 0 var(--size-1000);
     } 
+    .quiz-container{
+      padding-inline:  var(--size-1000);
+    }
   
   }
   @media screen and (min-width: 1920px) {

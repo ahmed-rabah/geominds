@@ -6,7 +6,7 @@ import "./node_modules/leaflet/dist/leaflet.js" ;
 import './explorer.css'
 // import {countriesSearchList , getCountries , setCountriesListeners} from './components/sideCountriesList.js';
 //utilities functions 
-import languageInfo,{countryGeoJSON } from './components/utilities.js';
+import languageInfo,{countryGeoJSON , applyCountryGeoJSON,  getCountries } from './components/utilities.js';
 
 let continentsList = document.querySelector('.continents-list') ; 
 let continentsCaroussel = document.querySelector('.continents-caroussel') ; 
@@ -156,29 +156,11 @@ function slideContinents(list,direction){
         rightArrow.style.display = "block";
     }
 }
-async function getCountries(){
-    try {
-        let response = await fetch('https://restcountries.com/v3.1/all')
-        let data= await response.json() ; 
-        data.sort(function(a,b){
-            if(a.population > b.population){
-                return -1
-            }else if(a.population < b.population){
-                return 1
-            }else{
-                return 0 ; 
-            }
-        })
-        return data ; 
-    } catch (error) {
-        console.error(error) ;
-        return ; 
-    }
-}
+
 
 function countriesSearchList(list){
    return list.then((countries) => {
-    // console.log(countries[100]);
+    console.log(countries[100]);
     let htmlSearchList = `` ; 
         countries.forEach(({name,flags}) => {
             htmlSearchList += `
@@ -264,10 +246,7 @@ function displayCountry(countryName){
                                         ${countryInfoTasform("continent" , continents)}
                                         </div>
                                         <div class="info-group">
-                                            <h3 class="label">subregion</h3>
-                                            <div class="info">
-                                                <h3>${subregion}</h3>
-                                            </div>
+                                        ${countryInfoTasform("subregion" , subregion)}
                                         </div> 
                                     </div>
                                 </div>
@@ -360,147 +339,6 @@ function displayCountry(countryName){
     });
 }
 
-function applyCountryGeoJSON(country,latlng){
-    const mapid = L.map('mapid').setView(latlng,3) ; 
-    const tileUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png' ; 
-    const marker  = L.marker(latlng)
-    L.tileLayer(tileUrl, {
-          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      }).addTo(mapid);
-      marker.addTo(mapid);
-    let geoJSON = countryGeoJSON(country)
-    if(geoJSON != undefined){
-        L.geoJSON(geoJSON, {
-            style:{color: "var(--clr-primary-1)"} 
-        }).addTo(mapid);
-    }
-
-}
-
-function coatArms(coat){
-    if(coat.png){
-        return `<img src="${coat.png}" class="coat-armes" > `
-    }
-        return `<h3>has no coat of armes</h3>` ; 
-}
-function bordersTransform(countries,bordersCodes=[]){
-let borders = countries.filter(country=>{
-                                         if(bordersCodes.includes(country.cca3)) return true;
-                                         if(bordersCodes.includes(country.cca2)) return true;
-                                         if(bordersCodes.includes(country.ccn3)) return true;
-                                         if(bordersCodes.includes(country.cioc)) return true; 
-                                         return false ; 
-                                        })
-let html = `` ; 
-    switch (borders.length) {
-        case 0:
-             html += `<div class="info"> 
-                            <h3>has no borders</h3>
-                      </div>` ; 
-            break;
-        case 1:
-            html += `<div class="info initial"> 
-                        <div class="tooltip">
-                        <img src="${borders[0].flags.svg}" alt="${borders[0].name.common}" class="country-icon-img border-img" data-country-name="${borders[0].name.common}" />
-                        <h3 class="tooltiptext">${borders[0].name.official}</h3>
-                        </div>
-                    </div>` ; 
-            break;
-    
-        default:
-                html += `<div class="info initial borders-info"> ` ; 
-                borders.forEach(neighbor=> html+=`<div class="tooltip">
-                                                    <img src="${neighbor.flags.svg}" alt="${neighbor.name.common}" class="country-icon-img border-img" data-country-name="${neighbor.name.common}" />  
-                                                    <h3 class="tooltiptext">${neighbor.name.common}</h3>
-                                                 </div> `  ) ; 
-                html+=`</div>` ; 
-            break;
-    }
-    return html;
-}
-
-function TransformIdd(idd){
-    if(idd == undefined || idd == null  || !idd.root) { 
-        return null 
-    } 
-    let Arr = [] ; 
-    let root = idd.root ; 
-    if(!idd.suffixes){ 
-        Arr.push(`<span class="key">${root}</span>`) ;
-    } else{     
-        idd.suffixes.forEach((suffixe) => {
-            Arr.push(`<span class="key">${root}</span>${suffixe}`) ;
-        })
-    }
-    return Arr ; 
-}
-function TransformCurrency(currencies){
-    if(currencies == undefined || currencies == null ) { 
-        return currencies 
-    } 
-    let Arr = [] ; 
-    currencies.forEach(({name,symbol}) => {
-        Arr.push(`<span class="key">${symbol}</span> : ${name}`) ;
-    })
-    return Arr ; 
-}
-function joinKeyValue(keyvalue){
-    if(keyvalue == undefined || keyvalue == null ) { 
-        return keyvalue 
-    } 
-    let key  = Object.keys(keyvalue)
-    let value = Object.values(keyvalue);
-    return `<span class="key">${key}</span> : ${value}` ; 
-}
-function countryInfoTasform(label,info){
-    if(!info){
-        return `
-        <h3 class="label">${label}</h3>
-        <div class="info">
-        <h3>has no ${label}</h3>
-        </div>` ;  
-    }else if(typeof info === 'object'){
-        if (info.length == 1) {
-            return `
-            <h3 class="label">${label}</h3>
-            <div class="info">
-            <h3>${info[0]}</h3>
-            </div>` ;             
-        }
-        if(info.length == 0){
-            return `
-            <h3 class="label">${label}</h3>
-            <div class="info">
-            <h3>has no ${label}</h3>
-            </div>` ;   
-        }
-        let content = `<div class="label-group">
-                            <h3 class="label">${label}<span style="text-transform:lowercase">(s)</span></h3>
-                            <div class="toggle-values">
-                                <img src="./images/plus.png" alt="plus">
-                                <img src="./images/minus.png" class="hide" alt="minus">
-                            </div>
-                      </div>
-                      <ul class="info initial">` ; 
-            info.forEach((item,index)=>{
-                let hide = index != 0 ? "hide" : "" ;
-                let first = index == 0 ? "first-element" : "" ;
-                content += `<li class="${first} ${hide}">
-                                <h3>${item}</h3>
-                            </li>
-                            ` ; 
-            })
-            content += `</ul>` ; 
-            return content ; 
-        } else{
-            return `
-            <h3 class="label">${label}</h3>
-            <div class="info">
-            <h3>${info}</h3>
-            </div>` ;
-        }
-}
-
 function translationListListeners(translations , native){
         let leftTransBtn =  document.querySelector('.translations-button .left') ; 
         let rightTransBtn =  document.querySelector('.translations-button .right') ; 
@@ -526,7 +364,6 @@ function translationListListeners(translations , native){
                 })
             })  
 }
-
          
 function infoMultiValueListeners(){
     let toggleValues = document.querySelectorAll('.toggle-values') ; 
@@ -577,4 +414,128 @@ function translationLanguagesList(translations,nativeName = {}){
      translationsList += `</ul>`;
 
      return translationsList ; 
+}
+
+
+function countryInfoTasform(label,info){
+    if(!info){
+        return `
+        <h3 class="label">${label}</h3>
+        <div class="info">
+        <h3>has no ${label}</h3>
+        </div>` ;  
+    }else if(typeof info === 'object'){
+        if (info.length == 1) {
+            return `
+            <h3 class="label">${label}</h3>
+            <div class="info">
+            <h3>${info[0]}</h3>
+            </div>` ;             
+        }
+        if(info.length == 0){
+            return `
+            <h3 class="label">${label}</h3>
+            <div class="info">
+            <h3>has no ${label}</h3>
+            </div>` ;   
+        }
+        let content = `<div class="label-group">
+                            <h3 class="label">${label}<span style="text-transform:lowercase">(s)</span></h3>
+                            <div class="toggle-values">
+                                <img src="./images/plus.png" alt="plus">
+                                <img src="./images/minus.png" class="hide" alt="minus">
+                            </div>
+                      </div>
+                      <ul class="info initial">` ; 
+            info.forEach((item,index)=>{
+                let hide = index != 0 ? "hide" : "" ;
+                let first = index == 0 ? "first-element" : "" ;
+                content += `<li class="${first} ${hide}">
+                                <h3>${item}</h3>
+                            </li>
+                            ` ; 
+            })
+            content += `</ul>` ; 
+            return content ; 
+        } else{
+            return `
+            <h3 class="label">${label}</h3>
+            <div class="info">
+            <h3>${info}</h3>
+            </div>` ;
+        }
+}
+function TransformIdd(idd){
+    if(idd == undefined || idd == null  || !idd.root) { 
+        return null 
+    } 
+    let Arr = [] ; 
+    let root = idd.root ; 
+    if(!idd.suffixes){ 
+        Arr.push(`<span class="key">${root}</span>`) ;
+    } else{     
+        idd.suffixes.forEach((suffixe) => {
+            Arr.push(`<span class="key">${root}</span>${suffixe}`) ;
+        })
+    }
+    return Arr ; 
+}
+function TransformCurrency(currencies){
+    if(currencies == undefined || currencies == null ) { 
+        return currencies 
+    } 
+    let Arr = [] ; 
+    currencies.forEach(({name,symbol}) => {
+        Arr.push(`<span class="key">${symbol}</span> : ${name}`) ;
+    })
+    return Arr ; 
+}
+function joinKeyValue(keyvalue){
+    if(keyvalue == undefined || keyvalue == null ) { 
+        return keyvalue 
+    } 
+    let key  = Object.keys(keyvalue)
+    let value = Object.values(keyvalue);
+    return `<span class="key">${key}</span> : ${value}` ; 
+}
+function coatArms(coat){
+    if(coat.png){
+        return `<img src="${coat.png}" class="coat-armes" > `
+    }
+        return `<h3>has no coat of armes</h3>` ; 
+}
+function bordersTransform(countries,bordersCodes=[]){
+let borders = countries.filter(country=>{
+                                         if(bordersCodes.includes(country.cca3)) return true;
+                                         if(bordersCodes.includes(country.cca2)) return true;
+                                         if(bordersCodes.includes(country.ccn3)) return true;
+                                         if(bordersCodes.includes(country.cioc)) return true; 
+                                         return false ; 
+                                        })
+let html = `` ; 
+    switch (borders.length) {
+        case 0:
+             html += `<div class="info"> 
+                            <h3>has no borders</h3>
+                      </div>` ; 
+            break;
+        case 1:
+            html += `<div class="info initial"> 
+                        <div class="tooltip">
+                        <img src="${borders[0].flags.svg}" alt="${borders[0].name.common}" class="country-icon-img border-img" data-country-name="${borders[0].name.common}" />
+                        <h3 class="tooltiptext">${borders[0].name.official}</h3>
+                        </div>
+                    </div>` ; 
+            break;
+    
+        default:
+                html += `<div class="info initial borders-info"> ` ; 
+                borders.forEach(neighbor=> html+=`<div class="tooltip">
+                                                    <img src="${neighbor.flags.svg}" alt="${neighbor.name.common}" class="country-icon-img border-img" data-country-name="${neighbor.name.common}" />  
+                                                    <h3 class="tooltiptext">${neighbor.name.common}</h3>
+                                                 </div> `  ) ; 
+                html+=`</div>` ; 
+            break;
+    }
+    return html;
 }

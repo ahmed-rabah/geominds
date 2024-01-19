@@ -406,7 +406,7 @@ transform: scale(1.1);
   }
   .map-link{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items:center;
     gap: var(--size-200);
     text-decoration: underline;
