@@ -7,6 +7,7 @@ section.container,
     min-height: 85vh;
     /* grid-template-rows: 1fr; */
     justify-items: center;
+    /* align-items: center; */
     gap: var(--size-100);
     padding: var(--size-400) var(--size-300);
 }
@@ -63,8 +64,12 @@ section.container{
 } 
 .quiz-container{
   background-color: var(--clr-light-white ,#D6E6F2);
-  margin: 0;
+  margin: auto;
   padding: var(--size-500) var(--size-200);
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(70px , 1fr) minmax(200px ,3fr) minmax(251px , 3.5fr);
+  max-height: calc(100vh - 70px);
+
 }
 .quiz-header{
   display: flex;
@@ -88,7 +93,8 @@ section.container{
   background-color: var(--clr-primary-1);
   /* padding-block: var(--size-600); */
   width: 100%;
-  border-radius:  var(--size-300); 
+  border-radius: var(--size-300);
+  height: auto;
 }
 .question h3{
   font-size: var(--fs-18);
@@ -102,7 +108,7 @@ section.container{
 .question img{
   max-width: 150px;
   max-height: 70px;
-  border: 1px solid var(--clr-light-white);
+  /* border: 1px solid var(--clr-light-white); */
 }
 .options{
   display: grid;
@@ -115,7 +121,7 @@ section.container{
 .option{
   color: var(--clr-primary-1, #04364A);
   background: white;
-  padding-block: var(--size-200);
+  padding-block: var(--size-300);
   /* line-height: 170%; */
   font-weight: var(--fw-semi-bold);
   text-align: center;
@@ -129,7 +135,7 @@ section.container{
   background: var(--clr-secondary-1);
   /* color: white; */
 }
-/* #timer{
+#timer{
   position : relative;
   width: 100px;
 } 
@@ -147,8 +153,9 @@ section.container{
   font-size : 14px ; 
   text-align : center  ; 
 }
-*/
-  @media screen and (min-width: 768px) {
+
+ 
+@media screen and (min-width: 768px) {
     section.container{
       padding: var(--size-600) 8rem;
     }
@@ -160,11 +167,19 @@ section.container{
       flex-flow: wrap;
       padding-block: 0;
     }
+    .question h3{
+      font-size: var(--fs-24);
+    }
+    .question img{
+      max-width: 200px;
+      max-height: 120px;
+    }
     .options{
-      height: fit-content;
+      /* height: fit-content; */
       margin-top: var(--size-400);
       grid-template-columns: 1fr 1fr;
-      row-gap: var(--size-500);
+      row-gap: var(--size-100);
+      /* height: auto; */
 
     }
     .option{
@@ -175,9 +190,12 @@ section.container{
   }
   
   @media screen and (min-width: 900px) {
-  
+    
     .question h3{
       font-size: var(--fs-24);
+    }
+    .options{
+      column-gap: var(--size-700);
     }
       /* generic style in main.css */
   }
@@ -204,9 +222,14 @@ section.container{
     .image{
       height: 90%;
       
+    } 
+    section{
+      padding: var(--size-800);
     }
     .quiz-container{
-      padding-inline:  var(--size-800);
+      max-height: calc(100vh - 70px - 2 * var(--size-800));
+      padding-inline:  var(--size-1000);
+      border-radius: var(--size-300);
     }
   }
   
@@ -214,9 +237,12 @@ section.container{
 
      section.container{
       padding: 0 var(--size-1000);
-    } 
-    .quiz-container{
-      padding-inline:  var(--size-1000);
+    }
+    section{
+      padding-inline: 100px;
+    }
+    .options{
+      column-gap: var(--size-700);
     }
   
   }
@@ -234,6 +260,18 @@ section.container{
     .quiz-start-btn{
         font-size: var(--fs-32);
         padding-block: var(--size-600);
+    }
+    section{
+      padding-inline: 350px;
+    }
+    .question h3{
+      font-size: var(--fs-32);
+    }
+    .options{
+      column-gap: var(--size-1000);
+    }
+    .option{
+      font-size: var(--fs-24) ; 
     }
   }
 
