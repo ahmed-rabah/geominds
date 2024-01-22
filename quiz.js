@@ -39,9 +39,11 @@ function displayQuestion(quizElement){
                 optionsParag.forEach(option=> removeOptionEventListeners(option)) 
                 lifesHandler(correctAnswerID , option) ;
                 lifesUIHandler()
-                removeOptionStyling(optionsParag)
-                setScore(correctAnswerID , option)
-                nextQuestion() ; 
+                setTimeout(() => {
+                    removeOptionStyling(optionsParag)
+                    setScore(correctAnswerID , option)
+                    nextQuestion() ; 
+                }, 1300);
             },{once : true})
         }) 
     })
@@ -62,7 +64,16 @@ function nextQuestion(){
     }
 }
 function endQuiz(){
-    alert("endGame")
+    let prevRecord =  localStorage.getItem('record') ;
+    if(prevRecord < score){
+        localStorage.setItem('record', score);
+        // DisplayEndQuiz(true) ; 
+    } else{
+        // DisplayEndQuiz(false) ; 
+    }
+}
+function DisplayEndQuiz(newRecord = true){
+    alert("ok")
 }
 function setScore(correctAnswerID , option){
     if(checkAnswer(correctAnswerID , option)){
