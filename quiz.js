@@ -3,31 +3,90 @@ import { getCountriesLevels ,  getCountries } from './components/utilities.js';
 
 let AllCountries =  getCountries() ;
 let levels = getCountriesLevels() ; 
-let startQuizBtn = document.querySelector('.quiz-start-btn') ; 
+let startQuizBtns = document.querySelectorAll('.quiz-start-btn') ; 
+let container = document.querySelector('section.container') ; 
+let quiz = document.querySelector('section.quiz') ; 
+let quizContainer = document.querySelector('section.quiz .quiz-container') ; 
+let endGameRecord = document.querySelector('section.end-game.new-record') ; 
+let endGame = document.querySelector('section.end-game:not(.new-record)') ; 
 let lifes = document.querySelector('.lifes') ; 
 let lifesElements = document.querySelectorAll('.lifes .life') ; 
 let textQuestion = document.querySelector('.question h3')
 let imageQuestion = document.querySelector('.question img')
 let optionsContainer = document.querySelector('.options')
 let optionsParag = document.querySelectorAll('.option') ; 
-
+let timer  , timeRemaining  ,  watchsetInterval ; 
 
 // listeners
-
-startQuizBtn.addEventListener('click', ()=> startQuiz())
+startQuizBtns.forEach(startQuizBtn=> {
+    startQuizBtn.addEventListener('click', ()=> startQuiz())
+})
 
 // Functions
-let hearts  = 3 ; 
-let score  = 0 ; 
-let questionNbr = 0 ; 
+let hearts   ; 
+let  score  ; 
+let  questionNbr ; 
 function startQuiz() {
+    score = 0   ; 
+    questionNbr = 0  ; 
+    hearts  = 3 ; 
+    [container,endGame,endGameRecord].forEach(element => {
+        element.classList.add('hide')
+    });
+    quiz.classList.remove('hide')
+    lifesUIHandler() ; 
     let question  = GenerateQuestion() ; 
     displayQuestion(question) ; 
 }
 
-
+function strictSwitchTabs(quizElement){
+    watchsetInterval = setInterval(() =>{
+        if(document.hidden || document.msHidden || document.webkitHidden){
+            clearInterval(timer)
+            displayWarning() ; 
+            document.querySelector('.warning .button')
+                    .addEventListener('click',
+                                ()=>{continuePlaying(quizElement) }, 
+                                {once  : true}
+                    )  ; 
+            clearInterval(watchsetInterval) ; 
+            }
+   } , 5)
+}
+function continuePlaying(quizElement){
+    document.querySelector(".warning").remove() ; 
+    quizElement.then(({ options})=>{
+        let correctAnswerID = options.filter(opt=>opt.isCorrectAnswer)[0].id ; 
+        let Correctoption  ; 
+        optionsParag.forEach(option=>{
+            if(option.dataset.id === correctAnswerID){
+                Correctoption = option ;
+            }
+        })
+        displayResponse(correctAnswerID , Correctoption)
+        optionsParag.forEach(option=> removeOptionEventListeners(option)) 
+        lifesHandler(correctAnswerID ,"" , true) ;
+        lifesUIHandler()
+        setTimeout(() => {
+            removeOptionStyling(optionsParag)
+            setScore(0  , correctAnswerID ,"" , true)
+            resetTimerUI()
+            nextQuestion() ; 
+        }, 1300);  
+    })
+}
+function displayWarning(){
+    let warning = `<div class="warning">
+                    <h3 class="warning-text">
+                    Warning: Leaving the website will result in the loss of a heart. Stay on this page to keep your progress intact.
+                    </h3>
+                    <h4 class="button bg-light-green">continue!</h4>
+               </div>`
+               quizContainer.insertAdjacentHTML('beforeend', warning)
+}
 function displayQuestion(quizElement){
     quizElement.then(({question , options})=>{
+        strictSwitchTabs(quizElement) ; 
         let correctAnswerID = options.filter(opt=>opt.isCorrectAnswer)[0].id ; 
         textQuestion.innerHTML= question.p ;  
         imageQuestion.src= question.img; 
@@ -39,14 +98,16 @@ function displayQuestion(quizElement){
                 optionsParag.forEach(option=> removeOptionEventListeners(option)) 
                 lifesHandler(correctAnswerID , option) ;
                 lifesUIHandler()
+                stopTimer() ;
                 setTimeout(() => {
                     removeOptionStyling(optionsParag)
-                    setScore(correctAnswerID , option)
+                    setScore(timeRemaining  , correctAnswerID , option)
                     nextQuestion() ; 
                 }, 1300);
             },{once : true})
         }) 
     })
+    setTimer(9 , quizElement)
 }
 function removeOptionStyling(optionsElem){
     optionsElem.forEach(option=>{
@@ -56,39 +117,51 @@ function removeOptionStyling(optionsElem){
 }
 function nextQuestion(){
     if(hearts > 0 ){
-
         let question  = GenerateQuestion() ; 
          displayQuestion(question) ; 
     }else{
+        quiz.classList.add('hide')
+        clearInterval(watchsetInterval) ; 
         endQuiz()
     }
 }
 function endQuiz(){
-    let prevRecord =  localStorage.getItem('record') ;
-    if(prevRecord < score){
+    let record =  localStorage.getItem('record') ;
+    if(record < score){
+        endGameRecord.classList.remove('hide')
+        endGameRecord.querySelector('.quiz-score').innerHTML= score+`<br>pts` ; 
         localStorage.setItem('record', score);
         // DisplayEndQuiz(true) ; 
     } else{
+        endGame.querySelector('.quiz-score').innerHTML= score+`<br>pts` ; 
+        endGame.querySelector('.score h3.record span').innerHTML= record ; 
+        endGame.classList.remove('hide')
         // DisplayEndQuiz(false) ; 
     }
 }
-function DisplayEndQuiz(newRecord = true){
-    alert("ok")
-}
-function setScore(correctAnswerID , option){
-    if(checkAnswer(correctAnswerID , option)){
-       score += 100 ; 
+// function DisplayEndQuiz(newRecord = true){
+//     alert("ok")
+// }
+function setScore(points  , correctAnswerID , option , timeout = false){
+    if(timeout){
+        return ; 
+    }else if(checkAnswer(correctAnswerID , option)){
+        points = Math.floor(points/100);
+       score += points ; 
     }
-    console.log(score);
 }
-function lifesHandler(correctAnswerID , option){
-    if(!checkAnswer(correctAnswerID , option)){
+function lifesHandler(correctAnswerID , option , timeout=false ){
+    if(timeout){
+        hearts -- ; 
+        return ; 
+    }else if(!checkAnswer(correctAnswerID , option)){
         hearts -- ; 
     }
 }
 function lifesUIHandler(){
     console.log(hearts);
     lifesElements.forEach((elem , index)=>{
+        elem.classList.remove('gone')
         if(index >= hearts){
             elem.classList.add('gone')
         }
@@ -142,6 +215,60 @@ function  GenerateQuestion(){
 //     let hasAttribute = []
     
 // } 
+function setTimer(duration , quizElement){
+    duration *=1000 ; 
+    let circle = document.getElementById('cr'); 
+    let dashArray = circle.attributes['stroke-dasharray'].value;
+    let time = duration ; 
+     timer = setInterval(function() {
+    let end  = duration ; 
+    circle.style.strokeDashoffset  = dashArray - (dashArray * time) / end ; 
+    let second = Math.ceil((time/1000)) ; 
+    document.getElementById('timer').lastElementChild.innerHTML = second ; 
+    timeRemaining  =time  ;
+    time  = time - 10 ; 
+    if(time < 0){
+        clearInterval(timer)
+        quizElement.then(({ options})=>{
+            let correctAnswerID = options.filter(opt=>opt.isCorrectAnswer)[0].id ; 
+            let Correctoption  ; 
+            optionsParag.forEach(option=>{
+                if(option.dataset.id === correctAnswerID){
+                    Correctoption = option ;
+                }
+            })
+            displayResponse(correctAnswerID , Correctoption)
+            optionsParag.forEach(option=> removeOptionEventListeners(option)) 
+            lifesHandler(correctAnswerID ,"" , true) ;
+            lifesUIHandler()
+            setTimeout(() => {
+                removeOptionStyling(optionsParag)
+                setScore(0  , correctAnswerID ,"" , true)
+                resetTimerUI()
+                nextQuestion() ; 
+            }, 1300);  
+        })
+        }
+    if(time < ( end / 5 )){
+        document.querySelector('svg circle:last-child').style.stroke = 'red' ; 
+    }
+    if(time < (end / 3)){
+        document.querySelector('svg circle:first-child').style.stroke = 'red' ; 
+        // document.querySelector('svg circle:last-child').style.stroke = 'red' ; 
+    }
+    },10)
+    
+}
+function stopTimer() {
+    clearInterval(timer) ; 
+    resetTimerUI()
+}
+function resetTimerUI(){
+    // let circle = document.getElementById('cr'); 
+    document.querySelector('svg circle:last-child').style.stroke = '' ; 
+    document.querySelector('svg circle:first-child').style.stroke = '' ; 
+   
+}
 function getDiffCountry(countries,country){
     let diffCountry  ; 
     do {
@@ -174,27 +301,25 @@ function shuffle(array) {
   array.sort(() => random(0,5)%2 == 0 ? -1 : 1 );
 }
 
-// function timer(duration){
-//     let circle = document.getElementById('cr'); 
-//     let dashArray = circle.attributes['stroke-dasharray'].value;
-//     let time = duration ; 
-//     let x = setInterval(function() {
-//     let end  = duration ; 
-//     circle.style.strokeDashoffset  = dashArray - (dashArray * time) / end ; 
-//     let second = Math.ceil((time/1000)) ; 
-//     // document.getElementById('timer').lastElementChild.innerHTML = second+" seconds" ; 
-//     time  = time - 10 ; 
-//     if(time < 0){
-//         clearInterval(x)
-//     }
-//     // if(time < ( end / 5 )){
-//     //     document.querySelector('svg circle:last-child').style.stroke = 'red' ; 
-//     // }
-//     // if(time < (end / 3)){
-//     //     document.querySelector('svg circle:first-child').style.stroke = 'red' ; 
-//     //     // document.querySelector('svg circle:last-child').style.stroke = 'red' ; 
-//     // }
-//     },10)
-
+// function setTimer(duration) {
+//         let time = duration ; 
+//         let x = setInterval(function() {
+//         let end  = duration ; 
+//         let second = Math.ceil((time/1000)) ; 
+//         document.getElementById('timer').innerHTML = second+" seconds" ; 
+//         time  = time - 10 ; 
+//         console.log(second);
+//         if(time < 0){
+//             clearInterval(x)
+//         }
+//         // if(time < ( end / 5 )){
+//             //     document.querySelector('svg circle:last-child').style.stroke = 'red' ; 
+//             // }
+//             // if(time < (end / 3)){
+//                 //     document.querySelector('svg circle:first-child').style.stroke = 'red' ; 
+//                 //     // document.querySelector('svg circle:last-child').style.stroke = 'red' ; 
+//                 // }
+//         },10)
 // }
-// timer(9) ; 
+
+

@@ -16,20 +16,34 @@ section.container{
   grid-template-areas: "heading" "image" "rules";
 }
 .end-game{
-  grid-template-areas: "image" "body";
+    align-items: center;
+    justify-content: center;
+    grid-template-areas: "image" "body";
 }
 .end-game .body{
   grid-area: body ;
 }
+.body .heading{
+  font-size: var(--fs-32);
+}
+
 .score{
   display: grid;
   justify-content: center;
   align-items: center;
 }
+.score.record h3 , 
+.score .record{
+  color: var(--clr-light-green);
+}
+.score.record h4{
+  background-color: var(--clr-light-green);
+  color: var(--clr-primary-1);
+}
 .score h3{
   color: var(--clr-primary-2);
   text-align: center;
-  font-size: var(--fs-24);
+  font-size: var(--fs-18);
   font-weight: var(--fw-semi-bold);
   letter-spacing: 1.2px;
   text-transform: capitalize;
@@ -40,7 +54,7 @@ section.container{
   align-items: center;
   color: white;
   font-family: var(--ff-secondary);
-  font-size: var(--fs-18);
+  font-size: var(--fs-16);
   font-weight: var(--fw-semi-bold);
   text-transform: uppercase;
   background-color: var(--clr-primary-2);
@@ -51,19 +65,21 @@ section.container{
   border-radius: 50%;
   aspect-ratio: 1/1;
   margin: auto ; 
+  line-height: 100%;
  }
+
  .body h5{
   color: var(--clr-primary-2);
   text-transform: capitalize;
-  line-height: 170%; /* 27.2px */
   text-align: justify;
-  letter-spacing: 0.8px;
  }
 .end-game img{
   grid-area: image ;
+  max-height: 40vh;
+  width: 100%;
 }
 .image{
-    grid-area: image;
+  grid-area: image;
   width: 100%;
   margin: 0;
 }
@@ -226,11 +242,43 @@ section.container{
 #timer p{
   position:absolute;
   top: 50% ;
+  left: 50%;
   transform : translate(-50% , -50%) ;
-  font-size : 14px ; 
+  font-size : var(--fs-32) ; 
+  text-shadow: 2px 2px var(--clr-banana-yellow) ;
+  color: var(--clr-primary-1);
   text-align : center  ; 
+  width: 100%;
 }
+.warning{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--size-400);
+  position: absolute ; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background  : rgba(255,255,255,0.3)
 
+  /* background-color: red */
+}
+.warning-text{
+  color : white ; 
+  font-size: var(--fs-18);
+  background-color: var(--clr-warning);
+  width: 60vw;
+  font-weight: var(--fw-semi-bold) ; 
+  /* max-width: 700px; */
+  padding: var(--size-600) var(--size-400);
+  text-align: center;
+  border-radius: var(--size-200);
+}
+.warning .button{
+  font-size: var(--fs-24);
+}
  
 @media screen and (min-width: 768px) {
     section.container{
@@ -263,7 +311,24 @@ section.container{
       padding-block: var(--size-500);
       font-size: var(--fs-18);
     }
-   
+    .end-game{
+      padding-inline: calc(2 * var(--size-1000));
+    }
+    .end-game .body .heading{      
+      font-size: var(--fs-heading-4);
+    }
+    .score h3,
+    .score h4{
+      font-size: var(--fs-24);
+    }
+    .body h5{
+      line-height: 180%;
+      margin-bottom: var(--size-300);
+    }
+    .end-game .body{
+      align-self: baseline;
+    }
+    
   }
   
   @media screen and (min-width: 900px) {
@@ -308,6 +373,34 @@ section.container{
       padding-inline:  var(--size-1000);
       border-radius: var(--size-300);
     }
+
+    .end-game{
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: "image body";
+      padding-inline:  var(--size-600);
+      gap: var(--size-600);
+    }
+    .end-game .body .heading{      
+      font-size: var(--fs-heading-2);
+    }
+    .score h3,
+    .score h4{
+      font-size: var(--fs-24);
+    }
+    .body h5{
+      font-size: var(--fs-18);
+      line-height: 180%;
+      margin-bottom: var(--size-300);
+    }
+    .end-game img {
+      max-height: 80%;
+  }
+    .end-game .body{
+      align-self: unset;
+    }
+    .warning-text{
+      font-size: var(--fs-24);
+    }
   }
   
   @media screen and (min-width: 1360px) {
@@ -321,16 +414,26 @@ section.container{
     .options{
       column-gap: var(--size-700);
     }
-  
+    .end-game .body .heading{
+      font-size: var(--fs-heading)
+    }
+    .end-game .body h5{
+      padding-inline: var(--size-1000);
+    }
+    .quiz-start-btn{
+      font-size: var(--fs-32);
+    }
   }
   @media screen and (min-width: 1920px) {
-    .heading{
+    .heading,
+    .end-game .body .heading{
         font-size: var(--fs-heading-0);
       }
     .rule img {
       width: 70px;
       height: 70px;
     } 
+    .end-game .body h5,
     .rule p{
         font-size: var(--fs-24);
     }  
@@ -341,7 +444,9 @@ section.container{
     section{
       padding-inline: 350px;
     }
-    .question h3{
+    .question h3,
+    .score h3,
+    .score h4{
       font-size: var(--fs-32);
     }
     .options{
