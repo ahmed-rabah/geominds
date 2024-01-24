@@ -40,17 +40,24 @@ function startQuiz() {
 }
 
 function strictSwitchTabs(quizElement){
+    let switchOut = false
     watchsetInterval = setInterval(() =>{
         if(document.hidden || document.msHidden || document.webkitHidden){
+            switchOut = true
+        }
+        if(switchOut && !(document.hidden || document.msHidden || document.webkitHidden)){
+            switchOut = false ; 
             clearInterval(timer)
             displayWarning() ; 
-            document.querySelector('.warning .button')
-                    .addEventListener('click',
-                                ()=>{continuePlaying(quizElement) }, 
-                                {once  : true}
-                    )  ; 
-            clearInterval(watchsetInterval) ; 
-            }
+                document.querySelector('.warning .button')
+                .addEventListener('click',
+                ()=>{
+                    continuePlaying(quizElement)
+                     }, 
+                     {once  : true}
+                )  ; 
+            
+        }
    } , 5)
 }
 function continuePlaying(quizElement){
@@ -86,6 +93,7 @@ function displayWarning(){
 }
 function displayQuestion(quizElement){
     quizElement.then(({question , options})=>{
+        clearInterval(watchsetInterval) ;
         strictSwitchTabs(quizElement) ; 
         let correctAnswerID = options.filter(opt=>opt.isCorrectAnswer)[0].id ; 
         textQuestion.innerHTML= question.p ;  
