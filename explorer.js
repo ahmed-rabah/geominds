@@ -30,7 +30,6 @@ window.addEventListener('DOMContentLoaded',()=>{
         contriesList.innerHTML = countriesSearchItems ; 
         setCountriesListeners() ; 
     })
-    // console.log(countries);
 })
 
 continentsBtns.forEach(btn=>{
@@ -62,8 +61,6 @@ continentsBtns.forEach(btn=>{
         continentsBtns.forEach(btnReset=>{ 
             btnReset.classList.remove('selected') 
               if (btnReset.dataset.selectedContinent == continent) {
-                console.log(btnReset.dataset.selectedContinent);
-                console.log(continent);
                 btnReset.classList.add('selected') 
                };
         })
@@ -109,19 +106,8 @@ window.addEventListener('scroll',()=>{
     }else{
         aside.style.top=  (70 + 60)+"px" ; 
     } 
-    // let footerY=footer.getBoundingClientRect(); 
-    // let asideBottom=aside.getBoundingClientRect() ; 
-    // console.log("footerY :  ");
-    // console.log(footerY);
-    // console.log("asideBottom :  ");
-    // console.log(asideBottom);
-    //  if(footerY <= asideBottom ){
-    //     aside.classList.add('aside-coordinate')
-    // }else{
-    //      aside.classList.remove('aside-coordinate')
-    //  }
-
 })
+
 controlIcons.addEventListener('click',()=>{
     aside.classList.toggle('closed-aside') ;
     closeSearchIcon.classList.toggle('hide') ; 
@@ -136,9 +122,6 @@ CtnArrow.forEach(arrow=>arrow.addEventListener('click',()=>slideContinents(conti
 // functions
 
 function slideContinents(list,direction){
-    // let clientWidth = list.clientWidth ; 
-    // let scrollWidth = list.scrollWidth ;
-    // let scrollLeft = list.scrollLeft ;
     if(direction == "right"){
         list.scrollLeft += list.clientWidth ; 
     }
@@ -160,7 +143,7 @@ function slideContinents(list,direction){
 
 function countriesSearchList(list){
    return list.then((countries) => {
-    console.log(countries[100]);
+    // console.log(countries[100]);
     let htmlSearchList = `` ; 
         countries.forEach(({name,flags}) => {
             htmlSearchList += `
@@ -198,17 +181,16 @@ function displayCountry(countryName){
                 borders,gini ,
                 capital,coatOfArms = "has no coat of armes",
                 continents,currencies,
-                idd,
+                idd,cca2,cca3,cioc,
                 landlocked,independent,
                 tld,unMember,timezones,
                 subregion,status,
                 startOfWeek,region,
                 responseFulfiled = true
-            } = countries.filter(country => country.name.common  === countryName)[0] ?? {name: countryName , responseFulfiled : false} ; 
+            } = countries.find(country => country.name.common  === countryName)?? {name: countryName , responseFulfiled : false} ; 
              let currenciesValues  =  currencies ? Object.values(currencies)  : null ; 
              let languagesValues  =  languages ? Object.values(languages)  : null ; 
 
-            // translationLanguagesList(translations,name.nativeName);
             section.classList.add("justify-start");
             section.innerHTML = `<div class="country-names-flag">
                                         <img src="${flags.svg}" class="country-flag" alt="${name.common} flag">
@@ -233,7 +215,8 @@ function displayCountry(countryName){
                                                     <img src="./images/small-right-arrow.svg" class="right" alt="translations right arrow">
                                                     <img src="./images/small-left-arrow.svg" class="left hide" alt="leftarrow">
                                                 </div>
-                                                ${translationLanguagesList(translations,name.nativeName)}
+                                                <ul role="list" class="translations-list hide">
+                                                </ul>
                                             
                                             </div>
                                     </div>
@@ -333,41 +316,15 @@ function displayCountry(countryName){
                                         </div>
                                     </div>
     `; 
-    applyCountryGeoJSON(name.common,latlng)
-    translationListListeners(translations, name.nativeName) ; 
+    applyCountryGeoJSON([ name.common , name.official ,cca2 , cca3, cioc],latlng)
+    translationLanguagesList(translations, name.nativeName) ; 
     infoMultiValueListeners() ; 
     });
 }
 
-function translationListListeners(translations , native){
-        let leftTransBtn =  document.querySelector('.translations-button .left') ; 
-        let rightTransBtn =  document.querySelector('.translations-button .right') ; 
-        let translationList =  document.querySelector('.translations-list') ; 
-
-        document.querySelector('.translations-button').addEventListener('click',()=>{
-            [translationList,leftTransBtn,rightTransBtn].forEach(element=>{element.classList.toggle('hide')})
-        })
-        let selectedTranslationItem = document.querySelector('.translation-item.selected').dataset.languageCode ; 
-        let {common , official} = translations[selectedTranslationItem] ?? native[selectedTranslationItem] ;
-        document.querySelector('.seconadary-common-name').innerHTML = common;
-        document.querySelector('.seconadary-official-name').innerHTML = official;
-        // document.querySelector('.official-name');
-        let translationItems = document.querySelectorAll('.translation-item') ; 
-            translationItems.forEach(translation=>{
-                translation.addEventListener("click",()=>{
-                    document.querySelector('.translation-item.selected').classList.remove('selected');
-                    translation.classList.add('selected'); 
-                    let language = translation.dataset.languageCode ; 
-                    let {common , official} = translations[language] ?? native[language]
-                    document.querySelector('.seconadary-common-name').innerHTML = common;
-                    document.querySelector('.seconadary-official-name').innerHTML = official;
-                })
-            })  
-}
          
 function infoMultiValueListeners(){
     let toggleValues = document.querySelectorAll('.toggle-values') ; 
-    // elem.addEventListener('click',()=>{
         toggleValues.forEach(toggleElem=>{
             toggleElem.addEventListener('click',()=>{
             let btns  = toggleElem.childNodes ; 
@@ -382,8 +339,31 @@ function infoMultiValueListeners(){
 
         })
 }   
+function translationListListeners(translationElement , translations , native){
+    let leftTransBtn =  document.querySelector('.translations-button .left') ; 
+    let rightTransBtn =  document.querySelector('.translations-button .right') ; 
 
-function translationLanguagesList(translations,nativeName = {}){
+    document.querySelector('.translations-button').addEventListener('click',()=>{
+        [translationElement,leftTransBtn,rightTransBtn].forEach(element=>{element.classList.toggle('hide')})
+    })
+    let selectedTranslationItem = document.querySelector('.translation-item.selected').dataset.languageCode ; 
+    let {common , official} = translations[selectedTranslationItem] ?? native[selectedTranslationItem] ;
+    document.querySelector('.seconadary-common-name').innerHTML = common;
+    document.querySelector('.seconadary-official-name').innerHTML = official;
+    let translationItems = document.querySelectorAll('.translation-item') ; 
+        translationItems.forEach(translation=>{
+            translation.addEventListener("click",()=>{
+                document.querySelector('.translation-item.selected').classList.remove('selected');
+                translation.classList.add('selected'); 
+                let language = translation.dataset.languageCode ; 
+                let {common , official} = translations[language] ?? native[language]
+                document.querySelector('.seconadary-common-name').innerHTML = common;
+                document.querySelector('.seconadary-official-name').innerHTML = official;
+            })
+        })  
+}
+function translationLanguagesList( translations,nativeName = {}){
+    let translationElement =  document.querySelector('.translations-list') ; 
     let translationsCode = Object.keys(translations);
     let nativeKeys = Object.keys(nativeName) ;  
     for (let  key of nativeKeys) {
@@ -406,14 +386,21 @@ function translationLanguagesList(translations,nativeName = {}){
             }
      }) ; 
      let selected = "";
-     let translationsList = ` <ul role="list" class="translations-list hide" data-selected-translation=${translationsCode[0]}>` ; 
-     translationsCode.forEach((code,index) => {
-        (index == 0)  ? selected ="selected" : selected ="" ; 
-         translationsList += `<li class="translation-item ${selected}" data-language-code="${code}">${languageInfo(code)}</li>`;
-     })
-     translationsList += `</ul>`;
+     let promises = []
+     translationElement.dataset.selectedTranslation= translationsCode[0] ; 
+     translationsCode.forEach((code)=>{
+         promises.push(languageInfo(code))
+    }) ; 
 
-     return translationsList ; 
+     Promise.all(promises).then(responses=>{
+         responses.forEach(((LangCodeToEng, index)=>{
+                (index == 0)  ? selected ="selected" : selected ="" ; 
+               translationElement.insertAdjacentHTML('beforeend', `<li class="translation-item ${selected}" data-language-code="${translationsCode[index]}">${LangCodeToEng}</li>`) ;
+
+        }))
+        translationListListeners(translationElement , translations , nativeName)
+    });
+
 }
 
 
