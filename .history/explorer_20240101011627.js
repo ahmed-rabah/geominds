@@ -1,1 +1,0 @@
-import countries from './components/sideCountriesList.js';
