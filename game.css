@@ -1,9 +1,17 @@
 :root{
     font-family: var(--ff-primary);
 }
+#mapid{
+  width :100%; 
+  max-height : 100% ; 
+  min-height: 400px;
+  background-color: rgba(214, 230, 242);
+  /* opacity: 0.5; */
+}
 section.container,
 .end-game,
-.quiz-container{
+.quiz-container,
+.guess-container{
     display: grid;
     min-height: 85vh;
     justify-items: center;
@@ -110,7 +118,7 @@ section.container{
     width : 30px ; 
     height: 30px;
 }
-.quiz-start-btn{
+.game-start-btn{
     width: 100%;
     padding: var(--size-400) var(--size-100) ; 
     border-radius: var(--size-100);
@@ -126,16 +134,24 @@ section.container{
     line-height: 90%; /* 28.8px */
     text-transform: uppercase;
 } 
-.quiz-container{
+.quiz-container,
+.guess-container{
   background-color: var(--clr-light-white ,#D6E6F2);
   margin: auto;
   padding: var(--size-500) var(--size-200);
   grid-template-columns: 1fr;
-  grid-template-rows: minmax(70px , 1fr) minmax(200px ,3fr) minmax(251px , 3.5fr);
+  /* grid-template-rows: minmax(70px , 1fr) minmax(200px ,3fr) minmax(251px , 3.5fr); */
+  /* grid-template-rows: 70px 70px  minmax(400px , 6fr); */
   max-height: calc(100vh - 70px);
-
+  
 }
-.quiz-header{
+.quiz-container{
+  grid-template-rows: minmax(70px , 1fr) minmax(200px ,3fr) minmax(251px , 3.5fr);
+}
+.guess-container{
+  grid-template-rows: 70px auto  minmax(400px , 6fr);
+}
+.game-header{
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -173,7 +189,8 @@ section.container{
   border-radius: var(--size-300);
   height: auto;
 }
-.question h3{
+.question h3 , 
+.country-name{
   font-size: var(--fs-18);
   font-weight: var(--fw-semi-bold);
   /* line-height: 170%;  */
@@ -182,11 +199,18 @@ section.container{
   color: white;
   text-align: center;
 }
+.country-name{
+  background-color : var(--clr-primary-1) ; 
+  padding : var(--size-200) var(--size-600);
+  border-radius: var(--size-200);
+  
+}
 .question img{
   max-width: 150px;
   max-height: 70px;
   border: 1px solid var(--clr-light-white);
 }
+
 .options{
   display: grid;
   justify-content: space-between;
@@ -420,7 +444,7 @@ section.container{
     .end-game .body h5{
       padding-inline: var(--size-1000);
     }
-    .quiz-start-btn{
+    .game-start-btn{
       font-size: var(--fs-32);
     }
   }
@@ -437,7 +461,7 @@ section.container{
     .rule p{
         font-size: var(--fs-24);
     }  
-    .quiz-start-btn{
+    .game-start-btn{
         font-size: var(--fs-32);
         padding-block: var(--size-600);
     }

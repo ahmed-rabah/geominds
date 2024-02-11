@@ -13,8 +13,8 @@ let lifes = document.querySelector('.lifes') ;
 let lifesElements = document.querySelectorAll('.lifes .life') ; 
 let textQuestion = document.querySelector('.question h3')
 let imageQuestion = document.querySelector('.question img')
-let optionsContainer = document.querySelector('.options')
-let optionsParag = document.querySelectorAll('.option') ; 
+// let optionsContainer = document.querySelector('.options')
+// let optionsParag = document.querySelectorAll('.option') ; 
 let timer  , timeRemaining  ,  watchsetInterval ; 
 
 // listeners
@@ -219,6 +219,8 @@ function  GenerateQuestion(){
             return quizQuestion
             }) )
 }
+
+
 // function randomCountryAttribute(country){
 //     let hasAttribute = []
     
@@ -277,19 +279,7 @@ function resetTimerUI(){
     document.querySelector('svg circle:first-child').style.stroke = '' ; 
    
 }
-function getDiffCountry(countries,country){
-    let diffCountry  ; 
-    do {
-       diffCountry =   countries[random(0,countries.length)]
-    } while (diffCountry.cca3 == country.cca3);
-    return diffCountry ; 
-}
-function removeOptionEventListeners(option) {
-    const newOption = option.cloneNode(true);
-    option.parentNode.replaceChild(newOption, option);
-     optionsParag = document.querySelectorAll('.option') ; 
-  }
-  
+
 function random(min =0, max) {
     return Math.floor( min + Math.random() * (max - min) );
 
@@ -305,29 +295,49 @@ function RandomId() {
   
     return randomId;
   }
-function shuffle(array) {
-  array.sort(() => random(0,5)%2 == 0 ? -1 : 1 );
+
+/// map 
+const style  = {
+        fillColor: 'var(--clr-primary-1)',
+        weight: 1,
+        opacity: 1,
+        color: 'white',
+        // dashArray: '3',
+        fillOpacity: 1, 
+    };
+
+const mapid =L.map('mapid',{
+                    maxZoom: 20,
+                    minZoom: 0,
+                    zoomSnap : 0.1 ,
+                    }).setView([30,0] , 1);
+
+fetch('./worldgeoJSON.json')
+.then(res=>res.json())
+.then(geoJSONS=>{
+    var overallBounds = L.latLngBounds();
+    let main  = geoJSONS.main;
+    main.forEach(geo => {
+       let geojson =  L.geoJson({id: geo.iso3 , type : geo.type, geometry : geo.geometry}, {style: style}).addTo(mapid);
+       if(geo.name !== "Antarctica"){
+           overallBounds.extend(geojson.getBounds());
+        }
+        console.log(geojson.getLayerId);
+    });
+    overallBounds = L.latLngBounds([overallBounds.getSouth() - 10, overallBounds.getWest()], overallBounds.getNorthEast());
+    console.log(overallBounds);
+    // overallBounds.pad(0.3) ; 
+    mapid.fitBounds(overallBounds);
+    mapid.setMaxBounds(overallBounds);
+    mapid.fitWorld(overallBounds)
+}) ; 
+
+function onMapClick(e) {
+    alert("You clicked the map at " + e.latlng);
 }
 
-// function setTimer(duration) {
-//         let time = duration ; 
-//         let x = setInterval(function() {
-//         let end  = duration ; 
-//         let second = Math.ceil((time/1000)) ; 
-//         document.getElementById('timer').innerHTML = second+" seconds" ; 
-//         time  = time - 10 ; 
-//         console.log(second);
-//         if(time < 0){
-//             clearInterval(x)
-//         }
-//         // if(time < ( end / 5 )){
-//             //     document.querySelector('svg circle:last-child').style.stroke = 'red' ; 
-//             // }
-//             // if(time < (end / 3)){
-//                 //     document.querySelector('svg circle:first-child').style.stroke = 'red' ; 
-//                 //     // document.querySelector('svg circle:last-child').style.stroke = 'red' ; 
-//                 // }
-//         },10)
-// }
-
-
+mapid.on('click', onMapClick);
+// L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+// maxZoom: 19,
+// attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+// }).addTo(mapid);

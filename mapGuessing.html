@@ -4,12 +4,15 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./images/icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./node_modules/leaflet/dist/leaflet.css">
     <title>GeoMinds</title>
   </head>
   <body>
 
     <main>
-          <section class="container">
+        <!--before the game started-->
+
+          <section class="container hide">
               <h1 class="heading">guess <span>the</span> location <span>Game</span></h1>
               <img src="./images/map-game.svg" alt="quiz starting" class="image">
           <div class="rules-container">
@@ -25,14 +28,75 @@
                 <img src="./images/reward.png" alt="reward icon">
                 <p>The faster your guess, the higher your point score in this guessing game.</p>
             </div>
-            <p class="quiz-start-btn">start guessing</p>
+            <p class="game-start-btn">start guessing</p>
             </div>
+        </section>
+        <!-- the game-->
+        <section class="guessing-game">
+          <div class="guess-container">
+            <div class="game-header">
+              <div class="lifes">
+                <div class="life">
+                  <img src="./images/heart.png" alt="heart">
+                  <img src="./images/lost-heart.png"   alt="lost heart">
+                </div>
+                <div class="life">
+                  <img src="./images/heart.png" alt="heart">
+                  <img src="./images/lost-heart.png"   alt="lost heart">
+                </div>
+                <div class="life">
+                  <img src="./images/heart.png" alt="heart">
+                  <img src="./images/lost-heart.png"  alt="lost heart">
+                </div>
+              </div>
+              <div id="timer">
+                <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle  cx="50.0" cy="50.0" r="30" />
+                  <circle id="cr" cx="50.0" cy="50.0" r="15" stroke="var(--clr-banana-yellow)" stroke-width="30" stroke-dasharray="100"  stroke-dashoffset=""  fill="transparent"  />
+                </svg>
+                <p>9</p> 
+              </div>
+            </div>
+            <h3 class="country-name">Morocco</h3>
+            <!--<img src="https://flagcdn.com/w320/ma.png" alt="flag">-->
+            <div id="mapid"></div>
+          </div>
+        </section>
+          
+          <!-- after the game -->
+        <section class="end-game hide new-record">
+          <!--<img src="./images/endQuiz.svg" alt="quiz ended" class="">-->
+          <div class="body">
+            <h1 class="heading"><span>Congratulations !!!</span></h1>
+            <div class="score record">
+                <h3>new personal record</h3>
+                <h4 class="game-score">390<br>pts</h4>
+            </div>
+            <h5>Congratulations! Setting a new record in points, even after losing all your hearts, is an impressive feat. Keep challenging yourself and aim to surpass this achievement in your next attempt! </h5>            
+            <p class="game-start-btn">Guess Again</p>
+          </div>
+          <img src="./images/newRecord-img.svg" alt="guessing game ended with new record" class="">
+        </section>
+        
+        <section class="end-game hide">
+          <img src="./images/endQuiz.svg" alt="guessing game ended" class="">
+          <div class="body">
+            <h1 class="heading"><span>game</span> over</h1>
+            <div class="score">
+                <h3>score</h3>
+                <h4 class="game-score">300<br>pts</h4>
+                <h3 class="record">personal record : <span>390</span> points</h3>
+            </div>
+            <h5>Better luck next time! Keep playing and aim for a new high score. Your next victory awaits!</h5>            
+            <p class="game-start-btn">Guess Again</p>
+          </div>
         </section>
     </main>
 
+  <script src="./node_modules/leaflet/dist/leaflet.js"></script>
   <script src="./components/header.js"></script>
   <script src="./components/footer.js"></script>
   <script type="module" src="/main.js"></script>
-  <script type="module" src="/quiz.js"></script>
+  <script type="module" src="/guess.js"></script>
   </body>
   </html>
