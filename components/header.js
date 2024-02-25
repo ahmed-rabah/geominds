@@ -2,11 +2,11 @@
 document.body.insertAdjacentHTML('afterbegin',`<header>
 <nav class="nav-links" role="navigation">
     <a href="./">
-      <img src="./images/logo.svg" alt="logo" class="logo" aria-label="logo">
+      <img src="../images/logo.svg" alt="logo" class="logo" aria-label="logo">
     </a>
     <div class="menu-toggle">
-      <img src="./images/hamburger-menu.svg" alt="hamburger menu" class="icon-hamburger">
-      <img src="./images/close-menu.svg" alt="close menu" class="icon-close">
+      <img src="../images/hamburger-menu.svg" alt="hamburger menu" class="icon-hamburger">
+      <img src="../images/close-menu.svg" alt="close menu" class="icon-close">
     </div>
     <div class="nav-menu">
       <ul class="nav-list" role="list">

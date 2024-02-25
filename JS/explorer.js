@@ -1,12 +1,12 @@
 //leaflet Library
-import "./node_modules/leaflet/dist/leaflet.css" ; 
-import "./node_modules/leaflet/dist/leaflet.js" ; 
+import "../node_modules/leaflet/dist/leaflet.css" ; 
+import "leaflet/dist/leaflet.js" ; 
 
 // css file
-import './explorer.css'
+import '../css/explorer.css'
 // import {countriesSearchList , getCountries , setCountriesListeners} from './components/sideCountriesList.js';
 //utilities functions 
-import languageInfo,{countryGeoJSON , applyCountryGeoJSON,  getCountries } from './components/utilities.js';
+import languageInfo,{countryGeoJSON , applyCountryGeoJSON,  getCountries } from '../components/utilities.js';
 
 let continentsList = document.querySelector('.continents-list') ; 
 let continentsCaroussel = document.querySelector('.continents-caroussel') ; 
@@ -49,7 +49,7 @@ continentsBtns.forEach(btn=>{
         list.then(countriesSearchItems => {
             if(countriesSearchItems == ""){
                 contriesList.innerHTML = `  <div class="warning">
-                                                <img src="./images/dead.svg" alt="not found" />
+                                                <img src="../images/dead.svg" alt="not found" />
                                                 <h4>your search did not match any results</h4>
                                             </div>
                                         ` ; 
@@ -80,7 +80,7 @@ countriesInput.addEventListener('keyup', ()=>{
     list.then(countriesSearchItems => {
         if(countriesSearchItems == ""){
             contriesList.innerHTML = `  <div class="warning">
-                                            <img src="./images/dead.svg" alt="not found" />
+                                            <img src="../images/dead.svg" alt="not found" />
                                             <h4>your search did not match any results</h4>
                                         </div>
                                     ` ; 
@@ -212,8 +212,8 @@ function displayCountry(countryName){
                                             <div class="translations-caroussel">
                                                 <div class="translations-button">
                                                     <h5>translations</h5>
-                                                    <img src="./images/small-right-arrow.svg" class="right" alt="translations right arrow">
-                                                    <img src="./images/small-left-arrow.svg" class="left hide" alt="leftarrow">
+                                                    <img src="../images/small-right-arrow.svg" class="right" alt="translations right arrow">
+                                                    <img src="../images/small-left-arrow.svg" class="left hide" alt="leftarrow">
                                                 </div>
                                                 <ul role="list" class="translations-list hide">
                                                 </ul>
@@ -299,8 +299,8 @@ function displayCountry(countryName){
                                         <div class="info-group">
                                                 <h3 class="label">maps</h3>
                                                 <div class="info">
-                                                    <a href="${maps.googleMaps}" class="map-link" target="_blank">open in google maps <img src="./images/link.png"  alt="link picture"></a>
-                                                    <a href="${maps.openStreetMaps}" class="map-link" target="_blank">open in openStreetMaps <img src="./images/link.png"  alt="link picture"></a>
+                                                    <a href="${maps.googleMaps}" class="map-link" target="_blank">open in google maps <img src="../images/link.png"  alt="link picture"></a>
+                                                    <a href="${maps.openStreetMaps}" class="map-link" target="_blank">open in openStreetMaps <img src="../images/link.png"  alt="link picture"></a>
                                                     <div id="mapid"></div>
                                                 </div>
                                         </div>
@@ -429,8 +429,8 @@ function countryInfoTasform(label,info){
         let content = `<div class="label-group">
                             <h3 class="label">${label}<span style="text-transform:lowercase">(s)</span></h3>
                             <div class="toggle-values">
-                                <img src="./images/plus.png" alt="plus">
-                                <img src="./images/minus.png" class="hide" alt="minus">
+                                <img src="../images/plus.png" alt="plus">
+                                <img src="../images/minus.png" class="hide" alt="minus">
                             </div>
                       </div>
                       <ul class="info initial">` ; 

@@ -20,11 +20,16 @@ section{
   padding: var(--size-400) var(--size-300);
 }
 
-section img {
+section.contact-form img {
   width: 100%;
-  grid-row: 2/3;
   margin: 0;
 }
+section img {
+  width: 100%;
+  margin: 0;
+  grid-row: 2/3;
+}
+
 .section-desc{
  display: flex;
  flex-direction: column;
@@ -141,7 +146,7 @@ section img {
   .top{
     top: 80px;
   }
-  section {
+  section:not(.contact-form) {
     grid-template-columns: 1fr 2fr;
   }
 

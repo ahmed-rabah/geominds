@@ -12,7 +12,7 @@
     <main>
         <!--before the game started-->
 
-          <section class="container hide">
+          <section class="container">
               <h1 class="heading">guess <span>the</span> location <span>Game</span></h1>
               <img src="./images/map-game.svg" alt="quiz starting" class="image">
           <div class="rules-container">
@@ -32,7 +32,7 @@
             </div>
         </section>
         <!-- the game-->
-        <section class="guessing-game">
+        <section class="guessing-game hide">
           <div class="guess-container">
             <div class="game-header">
               <div class="lifes">
@@ -94,9 +94,10 @@
     </main>
 
   <script src="./node_modules/leaflet/dist/leaflet.js"></script>
-  <script src="./components/header.js"></script>
-  <script src="./components/footer.js"></script>
-  <script type="module" src="/main.js"></script>
-  <script type="module" src="/guess.js"></script>
+  <script src="./node_modules/@mapbox/leaflet-pip/leaflet-pip.js"></script>
+  <script type="module" src="./components/header.js"></script>
+  <script type="module" src="./components/footer.js"></script>
+  <script type="module" src="JS/main.js"></script>
+  <script type="module" src="JS/guess.js"></script>
   </body>
   </html>

@@ -4,10 +4,10 @@ let firstScript = document.getElementsByTagName('script')[1] ;
 firstScript.insertAdjacentHTML('beforebegin',`    <footer>
 <nav id="footer-nav" class="bg-dark-blue">
   
-  <form action="" id="footer-contact" class="contact-form">
+  <form action="" id="footer-contact" class="contact-form footer-f-visib">
     <h4>contact us</h4>
-    <input type="text" name="name" placeholder="ex : John Doe">
-    <input type="email" name="email" placeholder="ex : JohnDoe@gmail.com">
+    <input type="text" name="name" id="name" placeholder="ex : John Doe">
+    <input type="email" name="mail" id="mail" placeholder="ex : JohnDoe@gmail.com">
     <textarea name="message" id="message" cols="24" rows="3" placeholder="your message here ..."></textarea>
     <button class="button bg-light-green">send message</button>
   </form>
@@ -32,7 +32,7 @@ firstScript.insertAdjacentHTML('beforebegin',`    <footer>
  
   <div class="footer-logo-support">
     <a href="./">
-      <img src="./images/footer-logo.svg" alt="logo"  aria-label="logo">
+      <img src="../images/footer-logo.svg" alt="logo"  aria-label="logo">
     </a>
       <a href="https://www.buymeacoffee.com/ahmedrabah" target="_blank" title="support us by buying us a Basketball" class="support-button bg-yellow">
       <span>buy us 🏀</span>
