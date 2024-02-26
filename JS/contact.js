@@ -1,3 +1,5 @@
+import "./home.js" ; 
+
 let forms = document.querySelectorAll('form') ; 
 forms.forEach(form=>{
   let name = form.name ; 
@@ -73,7 +75,7 @@ Body : `name : ${name} ,<br>
 });
 }
 function formCheck(form){
-return isValidEmail(form.mail.value) || !isEmpty(form.name.value) || !isEmpty(form.message.value) ; 
+return isValidEmail(form.mail.value) && !isEmpty(form.name.value) && !isEmpty(form.message.value) ; 
 }
 function isValidEmail(email){
 return  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);

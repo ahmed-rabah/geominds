@@ -138,6 +138,9 @@ picture{
 .bg-yellow{
   background-color: var(--clr-banana-yellow);
 }
+.bg-danger{
+  background-color: var(--clr-warning);
+}
 .initial{
   width: fit-content;
   width: -moz-fit-content;

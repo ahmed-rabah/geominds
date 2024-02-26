@@ -1,4 +1,10 @@
+import "../components/header.js"
+import "../components/footer.js"
+
+import '../css/main.css';
+import "./main.js"
 import "../css/game.css";
+
 import { getCountriesLevels ,  getCountries } from '../components/utilities.js';
 
 let AllCountries =  getCountries() ;
@@ -84,7 +90,7 @@ function continuePlaying(quizElement){
 }
 function displayWarning(){
     let warning = `<div class="warning">
-                    <h3 class="warning-text">
+                    <h3 class="warning-text bg-danger">
                     Warning: Leaving the website will result in the loss of a heart. Stay on this page to keep your progress intact.
                     </h3>
                     <h4 class="button bg-light-green">continue!</h4>

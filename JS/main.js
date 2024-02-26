@@ -1,4 +1,4 @@
-import '../css/main.css';
+// import '../css/main.css';
 // import './style.css';
 
 // let body = document.getElementsByTagName('body') ; 

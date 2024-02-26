@@ -1,7 +1,6 @@
+import footerLogo from '../images/footer-logo.svg' ;
 
-let firstScript = document.getElementsByTagName('script')[1] ;
-
-firstScript.insertAdjacentHTML('beforebegin',`    <footer>
+let footer = `<footer>
 <nav id="footer-nav" class="bg-dark-blue">
   
   <form action="" id="footer-contact" class="contact-form footer-f-visib">
@@ -32,7 +31,7 @@ firstScript.insertAdjacentHTML('beforebegin',`    <footer>
  
   <div class="footer-logo-support">
     <a href="./">
-      <img src="../images/footer-logo.svg" alt="logo"  aria-label="logo">
+      <img src="${footerLogo}" alt="logo"  aria-label="logo">
     </a>
       <a href="https://www.buymeacoffee.com/ahmedrabah" target="_blank" title="support us by buying us a Basketball" class="support-button bg-yellow">
       <span>buy us 🏀</span>
@@ -40,4 +39,10 @@ firstScript.insertAdjacentHTML('beforebegin',`    <footer>
   </div>
 </nav>
 <p id="copyright">@copyright 2023 Geominds</p>
-</footer>`);
+</footer>` ; 
+let firstScript = document.querySelector('body script1')
+ if(firstScript){
+  firstScript.insertAdjacentHTML('beforebegin', footer);
+}else{
+   document.body.insertAdjacentHTML('beforeend', footer);
+ }

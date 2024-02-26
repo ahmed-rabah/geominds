@@ -1,6 +1,8 @@
 
+import Icon from '../images/marker-icon.png' ; 
+
 export default async function languageInfo(languageCode){
-    let request = await fetch(`../LangCodeToEng/${languageCode}.txt`) ;  
+    let request = await fetch(`LangCodeToEng/${languageCode}.txt`) ;  
     let response = await request.text() ; 
 
     return response.replace(/ /g, '-').replace(/[^a-zA-Z0-9-]/g, '') ; 
@@ -71,7 +73,7 @@ export async function countryGeoJSON(countryNames){
     let paths  =["main/byName" , 'main/byIso3' ] ; 
     do{
     try {
-        let request = await fetch(`../countries/${paths[index]}/${countryNames[i]}.json`); 
+        let request = await fetch(`countries/${paths[index]}/${countryNames[i]}.json`); 
         index++ ; 
         return await request.json() ; 
     } catch (error) {
@@ -87,12 +89,19 @@ export async function countryGeoJSON(countryNames){
 export function applyCountryGeoJSON(country,latlng){
   const mapid = L.map('mapid').setView(latlng,3) ; 
   const tileUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png' ; 
-  const marker  = L.marker(latlng)
+  const marker  = L.marker(latlng,{icon : L.icon({
+    iconUrl: Icon,
+    iconAnchor: [16, 32],   // point of the icon that corresponds to the marker's location
+    popupAnchor: [0, -32]
+    // iconSize: [16,16],     // size of the icon
+  }) })
+  console.log(marker);
   L.tileLayer(tileUrl, {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(mapid);
     marker.addTo(mapid);
   countryGeoJSON(country).then(geoJSON=>{
+    console.log(geoJSON);
     if(geoJSON != undefined){
       L.geoJSON(geoJSON, {
         style:{color: "var(--clr-primary-1)"} 

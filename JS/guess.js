@@ -1,4 +1,10 @@
+import "../components/header.js"
+import "../components/footer.js"
+
+import '../css/main.css';
+import "./main.js"
 import "../css/game.css";
+
 
 // import { getCountriesLevels ,  getCountries } from '../components/utilities.js';
 

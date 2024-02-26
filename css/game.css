@@ -292,7 +292,6 @@ section.container{
 .warning-text{
   color : white ; 
   font-size: var(--fs-18);
-  background-color: var(--clr-warning);
   width: 60vw;
   font-weight: var(--fw-semi-bold) ; 
   /* max-width: 700px; */

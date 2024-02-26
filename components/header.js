@@ -1,12 +1,15 @@
+import logo from "../images/logo.svg" ;
+import hamburgerMenu from "../images/hamburger-menu.svg"
+import closedMenu from "../images/close-menu.svg"
 
 document.body.insertAdjacentHTML('afterbegin',`<header>
 <nav class="nav-links" role="navigation">
     <a href="./">
-      <img src="../images/logo.svg" alt="logo" class="logo" aria-label="logo">
+      <img src="${logo}" alt="logo" class="logo" aria-label="logo">
     </a>
     <div class="menu-toggle">
-      <img src="../images/hamburger-menu.svg" alt="hamburger menu" class="icon-hamburger">
-      <img src="../images/close-menu.svg" alt="close menu" class="icon-close">
+      <img src="${hamburgerMenu}" alt="hamburger menu" class="icon-hamburger">
+      <img src="${closedMenu}" alt="close menu" class="icon-close">
     </div>
     <div class="nav-menu">
       <ul class="nav-list" role="list">

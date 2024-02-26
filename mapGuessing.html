@@ -13,13 +13,18 @@
         <!--before the game started-->
 
           <section class="container">
+            <!--temp-->
+            <div class="warning">
+              <h1 class="bg-primary-1 warning-text">On Progress</h1>
+            </div>
+            <!--temp-->
               <h1 class="heading">guess <span>the</span> location <span>Game</span></h1>
               <img src="./images/map-game.svg" alt="quiz starting" class="image">
-          <div class="rules-container">
-            <div class="rule">
-                <img src="./images/3heart.png" alt="3 hearts">
-                <p>With <span>three hearts</span> at the start, Lose all hearts, and you're out in this guessing game.</p>
-            </div>
+              <div class="rules-container">
+                <div class="rule">
+                  <img src="./images/3heart.png" alt="3 hearts">
+                  <p>With <span>three hearts</span> at the start, Lose all hearts, and you're out in this guessing game.</p>
+                </div>
             <div class="rule">
                 <img src="./images/chronometer.png" alt="question icon">
                 <p>Fail to  find the location within the <span>20-second time limit</span>, and you'll <span>lose a heart</span>.</p>
@@ -27,10 +32,10 @@
             <div class="rule">
                 <img src="./images/reward.png" alt="reward icon">
                 <p>The faster your guess, the higher your point score in this guessing game.</p>
+              </div>
+              <p class="game-start-btn">start guessing</p>
             </div>
-            <p class="game-start-btn">start guessing</p>
-            </div>
-        </section>
+            </section>
         <!-- the game-->
         <section class="guessing-game hide">
           <div class="guess-container">
@@ -91,13 +96,11 @@
             <p class="game-start-btn">Guess Again</p>
           </div>
         </section>
+
     </main>
 
-  <script src="./node_modules/leaflet/dist/leaflet.js"></script>
-  <script src="./node_modules/@mapbox/leaflet-pip/leaflet-pip.js"></script>
-  <script type="module" src="./components/header.js"></script>
-  <script type="module" src="./components/footer.js"></script>
-  <script type="module" src="JS/main.js"></script>
+  <script type="module" src="./node_modules/leaflet/dist/leaflet.js"></script>
+  <script type="module" src="./node_modules/@mapbox/leaflet-pip/leaflet-pip.js"></script>
   <script type="module" src="JS/guess.js"></script>
   </body>
   </html>

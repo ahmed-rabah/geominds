@@ -1,3 +1,8 @@
+import "../components/header.js"
+import "../components/footer.js"
+
+import '../css/main.css';
+import "./main.js"
 import '../css/style.css';
 
 const observer = new IntersectionObserver(entries => {
