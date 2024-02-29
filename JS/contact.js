@@ -1,4 +1,3 @@
-import "./home.js" ; 
 
 let forms = document.querySelectorAll('form') ; 
 forms.forEach(form=>{

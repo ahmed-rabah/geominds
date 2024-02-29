@@ -14,8 +14,8 @@ import "./main.js"
 // import '../css/style.css';
 import '../css/explorer.css'
 //leaflet Library
-// import "leaflet/dist/leaflet.css" ; 
-import "leaflet/dist/leaflet.js" ; 
+// // import "leaflet/dist/leaflet.css" ; 
+// import "leaflet/dist/leaflet.js" ; 
 //utilities functions 
 import languageInfo,{countryGeoJSON , applyCountryGeoJSON,  getCountries } from '../components/utilities.js';
 

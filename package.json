@@ -12,7 +12,6 @@
     "vite": "^5.0.8"
   },
   "dependencies": {
-    "@mapbox/leaflet-pip": "^1.1.0",
-    "leaflet": "^1.9.4"
+    "@mapbox/leaflet-pip": "^1.1.0"
   }
 }

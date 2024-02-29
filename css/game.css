@@ -146,7 +146,7 @@ section.container{
   
 }
 .quiz-container{
-  grid-template-rows: minmax(70px , 1fr) minmax(200px ,3fr) minmax(251px , 3.5fr);
+  grid-template-rows: minmax(70px , 1fr) minmax(160px ,3fr) minmax(200px , 3.5fr);
 }
 .guess-container{
   grid-template-rows: 70px auto  minmax(400px , 6fr);
@@ -332,7 +332,7 @@ section.container{
     }
     .option{
       padding-block: var(--size-500);
-      font-size: var(--fs-18);
+      /* font-size: var(--fs-18); */
     }
     .end-game{
       padding-inline: calc(2 * var(--size-1000));
@@ -375,9 +375,7 @@ section.container{
       align-content : center ; 
       padding: var(--size-400);
     }
-    .rule p {
-        font-size: var(--fs-18);
-    }
+
     .heading{
         text-align: center ; 
     }
@@ -451,7 +449,10 @@ section.container{
     .heading,
     .end-game .body .heading{
         font-size: var(--fs-heading-0);
-      }
+    }
+    .rule p {
+      font-size: var(--fs-18);
+    }
     .rule img {
       width: 70px;
       height: 70px;

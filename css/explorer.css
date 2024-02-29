@@ -485,7 +485,7 @@ transform: scale(1.1);
   
   @media screen and (min-width: 900px) {
      :root{
-        --fs-body : var(--fs-18) ; 
+        --fs-body : var(--fs-16) ; 
      }
     .continent-btn:first-child{
         padding-inline: var(--size-400);

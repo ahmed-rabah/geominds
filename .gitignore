@@ -2,10 +2,9 @@ node_modules
 
 .history
 
-public
 
 world.geo.json
 
-countries/
+worldgeoJSON.json
 
-LangCodeToEng/
+

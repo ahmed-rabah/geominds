@@ -10,9 +10,23 @@ export default defineConfig({
         contact :   resolve(__dirname , 'contact.html') ,
         geoQuiz :   resolve(__dirname , 'geoQuiz.html') ,
         mapExplorer :   resolve(__dirname , 'mapExplorer.html') ,
-        mapGuessing :   resolve(__dirname , 'mapGuessing.html')
-            
+        mapGuessing :   resolve(__dirname , 'mapGuessing.html') , 
       },
     },
+ 
+    // copy: [
+    //   {
+    //     from: resolve(__dirname , 'public/countries'),
+    //     to: 'countries',
+    //   },
+    //   {
+    //     from: resolve(__dirname , 'public/LangCodeToEng'),
+    //     to: 'LangCodeToEng',
+    //   },
+    // ],
+    // assetsInclude: [
+    //  resolve(__dirname , 'countries')  , 
+    //  resolve(__dirname , 'LangCodeToEng')
+    // ],
   },
 })
